@@ -2,66 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download Options – SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <nav>
-    <ul class="toolbar">
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="profile.html">👤 Profile</a></li>
-      <li><a href="uploads.html">🎵 Uploads</a></li>
-      <li><a href="search.html">🔍 Search</a></li>
-      <li><a href="saved-chats.html">💬 Chats</a></li>
-      <li><a href="saved-lyrics.html">📝 Lyrics</a></li>
-      <li class="active"><a href="download.html">⬇️ Download</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section>
-      <h2>⬇️ Download Current Project Elements</h2>
-      <p>Select which parts of your current project you want to download.</p>
-
-      <div class="download-options">
-        <label><input type="checkbox" /> 💬 Chat Transcript (HTML or TXT)</label><br/>
-        <label><input type="checkbox" /> 📝 Saved Lyrics / Instructions</label><br/>
-        <label><input type="checkbox" /> 📈 Spectrogram Image</label><br/>
-        <label><input type="checkbox" /> 🎼 Music Score (PDF – placeholder demo)</label>
-      </div>
-
-      <button class="download-btn">Download Selected</button>
-    </section>
-
-    <section>
-      <h3>🎼 Music Score Preview (Concept)</h3>
-      <p>This is a placeholder demo showing what the downloadable score might look like for an outro or chorus section.</p>
-      <img src="placeholder-music-score.png" alt="Sample Music Score" class="music-score-preview" />
-      <p><em>Future versions may generate this score dynamically based on your lyrics and composition.</em></p>
-    </section>
-  </main>
-
   <style>
-    .download-options {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      line-height: 1.8;
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
     }
-    .download-btn {
-      background-color: #aac;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
+
+    .modal-content {
+      background-color: #f4f7f9;
+      margin: 10% auto;
+      padding: 2rem;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      right: 16px;
+      top: 8px;
       cursor: pointer;
-      border-radius: 6px;
     }
-    .music-score-preview {
+
+    .close:hover {
+      color: #444;
+    }
+
+    .download-buttons {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .download-buttons button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: linear-gradient(90deg, #a7c5bd, #d5e3dc);
+      color: #333;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .download-buttons button:hover {
+      background: linear-gradient(90deg, #88a9a3, #c3d6ce);
+    }
+
+    .download-mockup {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .download-mockup img {
       max-width: 100%;
       height: auto;
-      border: 1px solid #ccc;
-      margin-top: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.15);
     }
   </style>
+</head>
+<body>
+  <h1>Download Options</h1>
+  <p>Click the button below to preview download interface:</p>
+  <button id="openModal">Open Download UI</button>
+
+  <div id="downloadModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Download Options</h2>
+      <p>Select what you'd like to download:</p>
+
+      <!-- 👇 This is your mock-up visual embedded into the modal -->
+      <div class="download-mockup">
+        <img src="Download-mockup.png" alt="Download options mock-up" />
+        <p>This image is a placeholder to show what a future download interface could look like.</p>
+      </div>
+
+      <div class="download-buttons">
+        <button>Download Chat</button>
+        <button>Download Lyrics</button>
+        <button>Download Spectrograph</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("downloadModal");
+    const btn = document.getElementById("openModal");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 </body>
 </html>
