@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saved Lyrics – SoundMuseAI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <ul class="toolbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="profile.html">👤 Profile</a></li>
+      <li><a href="uploads.html">🎵 Uploads</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="saved-chats.html">💬 Chats</a></li>
+      <li class="active"><a href="saved-lyrics.html">📝 Lyrics</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>📝 Your Saved Lyrics & Instructions</h2>
+      <p>Reopen, edit, pin or download your musical ideas with ease.</p>
+
+      <div class="chat-entry">
+        <div class="chat-header">
+          <input type="text" value="Folder 23 – Outshine" class="chat-title" />
+          <span class="chat-date">Saved: 27 Aug 2025</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Pin to Top</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>🔁 Reopen</button></li>
+                <li><button>⬇️ Download</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <pre class="lyric-snippet">[Intro]\n[Act 1 – Emergence]\nSoft strings rise in 432Hz, harmonic shimmer overlays 111Hz...\n</pre>
+      </div>
+
+      <div class="chat-entry">
+        <div class="chat-header">
+          <input type="text" value="Gamma Waltz – Symphony Movement II" class="chat-title" />
+          <span class="chat-date">Saved: 25 Aug 2025</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Pin to Top</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>🔁 Reopen</button></li>
+                <li><button>⬇️ Download</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <pre class="lyric-snippet">[Movement II – Gamma Waltz]\nTempo 90bpm, full orchestra + subtle 5D shimmer...\n</pre>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const menus = document.querySelectorAll('.menu');
+    menus.forEach(menu => {
+      menu.addEventListener('click', () => {
+        const dropdown = menu.nextElementSibling;
+        dropdown.classList.toggle('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
