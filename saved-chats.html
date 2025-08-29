@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saved Chats - SoundMuseAI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <ul class="toolbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="profile.html">👤 Profile</a></li>
+      <li><a href="uploads.html">🎵 Uploads</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li class="active"><a href="saved-chats.html">💬 Saved Chats</a></li>
+      <li><a href="saved-lyrics.html">📝 Lyrics</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>💬 Your Saved Chats</h2>
+      <p>You can pin, archive, delete or reopen saved SoundMuseAI chats.</p>
+
+      <div class="chat-entry">
+        <div class="chat-header">
+          <input type="text" value="Idea Session – Lyric Builder" class="chat-title" />
+          <span class="chat-date">Saved: 29 Aug 2025</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Pin to Top</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>🔁 Reopen</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-entry">
+        <div class="chat-header">
+          <input type="text" value="Folder Concept Planning" class="chat-title" />
+          <span class="chat-date">Saved: 28 Aug 2025</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Pin to Top</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>🔁 Reopen</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-entry">
+        <div class="chat-header">
+          <input type="text" value="Gamma Wave Discussion" class="chat-title" />
+          <span class="chat-date">Saved: 25 Aug 2025</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Pin to Top</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>🔁 Reopen</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const menus = document.querySelectorAll('.menu');
+    menus.forEach(menu => {
+      menu.addEventListener('click', () => {
+        const dropdown = menu.nextElementSibling;
+        dropdown.classList.toggle('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
