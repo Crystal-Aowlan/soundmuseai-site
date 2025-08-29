@@ -1,0 +1,71 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #d8c6e3, #b5e2e7);
+}
+.container {
+    display: flex;
+    height: 100vh;
+}
+.toolbar {
+    width: 60px;
+    background: #444;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+.toolbar div {
+    margin: 10px 0;
+    cursor: pointer;
+}
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.chat-section, .spectro-section, .lyrics-section {
+    margin-bottom: 20px;
+}
+.chat-box {
+    height: 100px;
+    background: #eee;
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 5px;
+}
+.chat-input {
+    width: 100%;
+    padding: 8px;
+}
+.spectrogram {
+    height: 150px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lyrics-section textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+.upload-tools {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .toolbar {
+        flex-direction: row;
+        width: 100%;
+        height: 50px;
+        justify-content: space-around;
+    }
+}
