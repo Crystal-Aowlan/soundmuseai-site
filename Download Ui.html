@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Download Options – SoundMuseAI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <ul class="toolbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="profile.html">👤 Profile</a></li>
+      <li><a href="uploads.html">🎵 Uploads</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="saved-chats.html">💬 Chats</a></li>
+      <li><a href="saved-lyrics.html">📝 Lyrics</a></li>
+      <li class="active"><a href="download.html">⬇️ Download</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>⬇️ Download Current Project Elements</h2>
+      <p>Select which parts of your current project you want to download.</p>
+
+      <div class="download-options">
+        <label><input type="checkbox" /> 💬 Chat Transcript (HTML or TXT)</label><br/>
+        <label><input type="checkbox" /> 📝 Saved Lyrics / Instructions</label><br/>
+        <label><input type="checkbox" /> 📈 Spectrogram Image</label><br/>
+        <label><input type="checkbox" /> 🎼 Music Score (PDF – placeholder demo)</label>
+      </div>
+
+      <button class="download-btn">Download Selected</button>
+    </section>
+
+    <section>
+      <h3>🎼 Music Score Preview (Concept)</h3>
+      <p>This is a placeholder demo showing what the downloadable score might look like for an outro or chorus section.</p>
+      <img src="placeholder-music-score.png" alt="Sample Music Score" class="music-score-preview" />
+      <p><em>Future versions may generate this score dynamically based on your lyrics and composition.</em></p>
+    </section>
+  </main>
+
+  <style>
+    .download-options {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    .download-btn {
+      background-color: #aac;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .music-score-preview {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+  </style>
+</body>
+</html>
