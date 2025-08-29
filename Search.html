@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search & Filter – SoundMuseAI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>🔍 Search & Filter</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="uploads.html">My Uploads</a>
+      <a href="search.html" class="active">Search</a>
+    </nav>
+  </header>
+
+  <main class="search-filter">
+    <section>
+      <label for="keyword">Keyword Search:</label>
+      <input type="text" id="keyword" name="keyword" placeholder="e.g. demo, ambient, sunrise...">
+    </section>
+
+    <section class="checkboxes">
+      <h3>Filter by:</h3>
+      <label><input type="checkbox" name="filter" value="latest"> Latest</label>
+      <label><input type="checkbox" name="filter" value="oldest"> Oldest</label>
+      <label><input type="checkbox" name="filter" value="midi"> MIDI Only</label>
+      <label><input type="checkbox" name="filter" value="wav"> WAV Only</label>
+      <label><input type="checkbox" name="filter" value="mp3"> MP3 Only</label>
+      <label><input type="checkbox" name="filter" value="archived"> Archived Only</label>
+    </section>
+
+    <section class="search-results">
+      <p class="dimmed">Search results will appear here...</p>
+    </section>
+  </main>
+</body>
+</html>
