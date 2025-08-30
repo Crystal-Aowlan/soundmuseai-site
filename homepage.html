@@ -6,11 +6,56 @@
   <title>SoundMuseAI - Home</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #d8cde8, #c7e9eb);
-    }
+    <body>
+  <div class="toolbar">
+    <button title="User Profile">👤</button>
+    <button title="Home">🏠</button>
+    <button title="My Uploads">⏫🎵</button>
+    <button title="Search">🔍</button>
+    <button title="Saved Chats">💬💾</button>
+    <button title="Saved Lyrics">📝💾</button>
+    <button title="Download">⬇️</button>
+    <button title="More Options">⋯</button>
+  </div>
+
+  <div class="main-content">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <h2>SoundMuseAI GPT</h2>
+      <div class="chat-response">Chat/response area</div>
+      <input type="text" class="user-input" placeholder="Type here...">
+    </div>
+
+    <!-- Center Panel -->
+    <div class="center-panel">
+      <div class="spectrogram-container">
+        <h3>Spectrogram Display</h3>
+        <div class="spectrogram-placeholder">[Spectrogram Placeholder]</div>
+      </div>
+
+      <div class="image-upload-container">
+        <h3>Generated Artwork</h3>
+        <div class="image-placeholder">[Generated Image Placeholder]</div>
+
+        <label for="ratio">Ratio:</label>
+        <select id="ratio">
+          <option>1:1</option>
+          <option>3:2</option>
+          <option>16:9</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <h3>Lyrics / Canvas</h3>
+      <textarea class="lyrics-area" placeholder="Suggested lyrics or instructions..."></textarea>
+
+      <h4>Upload Music File</h4>
+      <input type="file" id="music-upload" accept=".mp3,.wav,.midi">
+    </div>
+  </div>
+</body>
     #splash {
       position: fixed;
       width: 100%;
