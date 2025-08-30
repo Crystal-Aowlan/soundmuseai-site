@@ -146,3 +146,24 @@ body {
     min-height: auto;
   }
 }
+.center-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spectrogram-container,
+.image-upload-container {
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.image-placeholder {
+  border: 1px solid #aaa;
+  background-color: #f0f0f0;
+  padding: 10px;
+  min-height: 100px;
+  margin-bottom: 10px;
+}
