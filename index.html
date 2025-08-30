@@ -1,61 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoundMuseAI - Home</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundMuseAI – Home</title>
+  <link rel="stylesheet" href="styles.css" />
+
   <style>
-    <body>
-  <div class="toolbar">
-    <button title="User Profile">👤</button>
-    <button title="Home">🏠</button>
-    <button title="My Uploads">⏫🎵</button>
-    <button title="Search">🔍</button>
-    <button title="Saved Chats">💬💾</button>
-    <button title="Saved Lyrics">📝💾</button>
-    <button title="Download">⬇️</button>
-    <button title="More Options">⋯</button>
-  </div>
-
-  <div class="main-content">
-    <!-- Left Panel -->
-    <div class="left-panel">
-      <h2>SoundMuseAI GPT</h2>
-      <div class="chat-response">Chat/response area</div>
-      <input type="text" class="user-input" placeholder="Type here...">
-    </div>
-
-    <!-- Center Panel -->
-    <div class="center-panel">
-      <div class="spectrogram-container">
-        <h3>Spectrogram Display</h3>
-        <div class="spectrogram-placeholder">[Spectrogram Placeholder]</div>
-      </div>
-
-      <div class="image-upload-container">
-        <h3>Generated Artwork</h3>
-        <div class="image-placeholder">[Generated Image Placeholder]</div>
-
-        <label for="ratio">Ratio:</label>
-        <select id="ratio">
-          <option>1:1</option>
-          <option>3:2</option>
-          <option>16:9</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Right Panel -->
-    <div class="right-panel">
-      <h3>Lyrics / Canvas</h3>
-      <textarea class="lyrics-area" placeholder="Suggested lyrics or instructions..."></textarea>
-
-      <h4>Upload Music File</h4>
-      <input type="file" id="music-upload" accept=".mp3,.wav,.midi">
-    </div>
-  </div>
-</body>
+    /* Splash screen */
     #splash {
       position: fixed;
       width: 100%;
@@ -67,17 +19,22 @@
       flex-direction: column;
       z-index: 1000;
     }
+
     #splash h1 {
       font-size: 2.5rem;
       color: #333;
     }
+
     #splash p {
       font-size: 1.2rem;
       color: #555;
     }
+
     #main {
       display: none;
     }
+
+    /* Toolbar */
     .toolbar {
       position: fixed;
       top: 0;
@@ -90,7 +47,9 @@
       align-items: center;
       color: white;
       padding-top: 10px;
+      z-index: 100;
     }
+
     .toolbar button {
       background: none;
       border: none;
@@ -99,173 +58,160 @@
       margin: 10px 0;
       cursor: pointer;
     }
-    .content {
+
+    /* Layout */
+    .main-grid {
       margin-left: 60px;
       padding: 20px;
       display: grid;
       grid-template-columns: 1fr 1.5fr 1fr;
       grid-template-rows: auto 1fr auto;
       gap: 10px;
-      height: calc(100vh - 40px);
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #eaeaff, #f0f7f7);
     }
-    .box {
-      background: #f0f0f0;
+
+    .panel {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-box, .spectrogram-box, .image-box {
+      border: 1px dashed #ccc;
+      background: #fff;
+      min-height: 120px;
       padding: 10px;
       border-radius: 8px;
-      height: 100%;
-      overflow: auto;
+      margin-bottom: 10px;
     }
-    .upload-section {
-      grid-column: 1 / 2;
-      grid-row: 3 / 4;
-    }
-    .chat-section {
-      grid-column: 1 / 2;
-      grid-row: 1 / 3;
-    }
-    .spectrogram-section {
-      grid-column: 2 / 3;
-      grid-row: 1 / 2;
-    }
-    .art-section {
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
-    }
-    .lyrics-section {
-      grid-column: 3 / 4;
-      grid-row: 1 / 4;
-    }
-    input[type="file"] {
+
+    .upload-controls {
       margin-top: 10px;
     }
+
+    .upload-controls select,
+    .upload-controls input[type="file"] {
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50px;
+      left: 60px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 200;
+    }
+
+    .popup ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .popup ul li {
+      padding: 6px 10px;
+    }
+
+    .popup ul li:hover {
+      background-color: #eee;
+    }
   </style>
+
   <script>
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('splash').style.display = 'none';
         document.getElementById('main').style.display = 'block';
-      }, 2500);
+      }, 2000);
     };
-  </script>
-</head>
-<body>
-  <div id="splash">
-    <h1>SoundMuse AI</h1>
-    <p>Your friendly music assistant, listening, guiding, and helping grow your creativity...</p>
-  </div>
-  <div id="main">
-    <div class="toolbar">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
-      <button>8</button>
-    </div>
-    <div class="content">
-      <div class="box chat-section">
-        <h3>SoundMuseAI GPT</h3>
-        <p>Chat / Music Analysis / Suggestions will appear here.</p>
-        <textarea rows="5" style="width:100%">User types here...</textarea>
-      </div>
-      <div class="box spectrogram-section">
-        <h3>Spectrogram Display</h3>
-        <p>[Live or Uploaded Spectrogram Placeholder]</p>
-      </div>
-      <div class="box art-section">
-        <h3>Generated Image</h3>
-        <p>[Artwork or moodboard appears here]</p>
-        <label for="ratio">Ratio: </label>
-        <select id="ratio">
-          <option value="1:1">1:1</option>
-          <option value="3:2">3:2</option>
-          <option value="2:3">2:3</option>
-        </select>
-      </div>
-      <div class="box lyrics-section">
-        <h3>Lyrics / Canvas</h3>
-        <textarea rows="10" style="width:100%">Suggested lyrics or instructions appear here...</textarea>
-      </div>
-      <div class="box upload-section">
-        <h3>Upload Music File</h3>
-        <input type="file" accept=".wav,.mp3,.midi">
-        <p>Supported: WAV, MIDI, MP3</p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>SoundMuseAI – Home</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <button title="User Profile">👤</button>
-    <button title="Home">🏠</button>
-    <button title="Uploads">⬆️🎵</button>
-    <button title="Search">🔍</button>
-    <button title="Saved Chats">💬💾</button>
-    <button title="Saved Lyrics">🗒️💾</button>
-    <button title="Downloads">⬇️</button>
-    <button title="More Options" onclick="toggleMore()">⋯</button>
-  </div>
-
-  <!-- Popup menu for More -->
-  <div class="popup" id="moreOptions">
-    <ul>
-      <li><a href="#">My Account</a></li>
-      <li><a href="#">Help</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-  </div>
-
-  <!-- Main layout grid -->
-  <div class="main-grid">
-    <!-- Left Panel: Chat + Input -->
-    <div class="panel left-panel">
-      <h2>SoundMuseAI GPT</h2>
-      <div class="chat-box">Chat/response/music suggestions will appear here...</div>
-      <input type="text" class="input-box" placeholder="User types here..." />
-    </div>
-
-    <!-- Center Panel: Spectrogram + Art + Upload -->
-    <div class="panel center-panel">
-      <h2>Spectrogram Display</h2>
-      <div class="spectrogram-box">[Spectrogram Placeholder]</div>
-      <h3>AI-Generated Art</h3>
-      <div class="image-box">[Image Generated Here]</div>
-      <div class="upload-controls">
-        <label for="ratio">Ratio:</label>
-        <select id="ratio">
-          <option value="1:1">1:1</option>
-          <option value="3:2">3:2</option>
-          <option value="2:3">2:3</option>
-        </select>
-        <input type="file" />
-      </div>
-    </div>
-
-    <!-- Right Panel: Lyrics/Canvas -->
-    <div class="panel right-panel">
-      <h2>Lyrics / Canvas</h2>
-      <textarea placeholder="Suggested lyrics or instructions appear here... (Acts like Canvas for AI + User input)"></textarea>
-    </div>
-  </div>
-
-  <script>
     function toggleMore() {
-      var menu = document.getElementById("moreOptions");
+      const menu = document.getElementById("moreOptions");
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
   </script>
+</head>
 
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h1>SoundMuse AI</h1>
+    <p>Your friendly music assistant – listening, guiding, and helping grow your creativity…</p>
+  </div>
+
+  <div id="main">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button title="User Profile">👤</button>
+      <button title="Home">🏠</button>
+      <button title="My Uploads">⬆️</button>
+      <button title="Search">🔍</button>
+      <button title="Saved Chats">💬</button>
+      <button title="Saved Lyrics">🗒️</button>
+      <button title="Download">⬇️</button>
+      <button title="More Options" onclick="toggleMore()">⋯</button>
+    </div>
+
+    <!-- More Options Menu -->
+    <div class="popup" id="moreOptions">
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-grid">
+      <!-- Left Panel -->
+      <div class="panel left-panel">
+        <h2>SoundMuseAI GPT</h2>
+        <div class="chat-box">Chat / Music Analysis / Suggestions will appear here…</div>
+        <input type="text" placeholder="User types here…" />
+      </div>
+
+      <!-- Center Panel -->
+      <div class="panel center-panel">
+        <h2>Spectrogram Display</h2>
+        <div class="spectrogram-box">[Live or Uploaded Spectrogram Placeholder]</div>
+
+        <h3>AI-Generated Art</h3>
+        <div class="image-box">[Generated Image Appears Here]</div>
+
+        <div class="upload-controls">
+          <label for="ratio">Ratio:</label>
+          <select id="ratio">
+            <option value="1:1">1:1</option>
+            <option value="3:2">3:2</option>
+            <option value="2:3">2:3</option>
+          </select>
+
+          <label for="music-upload">Upload Music File:</label>
+          <input type="file" id="music-upload" accept=".mp3,.wav,.midi" />
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="panel right-panel">
+        <h2>Lyrics / Canvas</h2>
+        <textarea rows="15" placeholder="Suggested lyrics or instructions appear here… (Acts like Canvas for AI + User input)"></textarea>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
