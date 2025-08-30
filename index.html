@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SoundMuseAI – Home</title>
-  <link rel="stylesheet" href="styles.css" />
-
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* Splash screen */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f2f4fb, #e4f2f2);
+    }
+
+    /* Splash Screen */
     #splash {
       position: fixed;
       width: 100%;
@@ -19,17 +24,14 @@
       flex-direction: column;
       z-index: 1000;
     }
-
     #splash h1 {
-      font-size: 2.5rem;
-      color: #333;
+      font-size: 2.7rem;
+      color: #222;
     }
-
     #splash p {
       font-size: 1.2rem;
-      color: #555;
+      color: #444;
     }
-
     #main {
       display: none;
     }
@@ -39,119 +41,101 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 50px;
+      width: 60px;
       height: 100%;
       background-color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: white;
       padding-top: 10px;
-      z-index: 100;
     }
-
     .toolbar button {
       background: none;
       border: none;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin: 10px 0;
       cursor: pointer;
     }
 
+    /* Profile */
+    .profile {
+      margin-top: 20px;
+      text-align: center;
+      color: white;
+    }
+    .profile img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+    }
+    .profile-name {
+      font-size: 0.75rem;
+      margin-top: 5px;
+    }
+
     /* Layout */
     .main-grid {
-      margin-left: 60px;
-      padding: 20px;
+      margin-left: 70px;
+      padding: 10px;
       display: grid;
       grid-template-columns: 1fr 1.5fr 1fr;
-      grid-template-rows: auto 1fr auto;
-      gap: 10px;
-      min-height: 100vh;
-      background: linear-gradient(to bottom right, #eaeaff, #f0f7f7);
+      gap: 15px;
     }
 
     .panel {
-      background: #f9f9f9;
+      background: white;
       padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
-
-    .chat-box, .spectrogram-box, .image-box {
-      border: 1px dashed #ccc;
-      background: #fff;
-      min-height: 120px;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .upload-controls {
+    textarea, select, input[type="file"] {
+      width: 100%;
       margin-top: 10px;
-    }
-
-    .upload-controls select,
-    .upload-controls input[type="file"] {
-      margin-top: 8px;
-      width: 100%;
-    }
-
-    textarea, input[type="text"] {
-      width: 100%;
-      padding: 8px;
+      padding: 6px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      resize: vertical;
     }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50px;
-      left: 60px;
-      background: #fff;
-      border: 1px solid #ccc;
+    .spectrogram-box,
+    .image-box {
+      border: 1px dashed #999;
+      padding: 20px;
       border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 200;
+      margin-top: 10px;
+      height: 180px;
+      text-align: center;
+      color: #555;
     }
 
-    .popup ul {
-      list-style: none;
-      margin: 0;
+    .upload-section {
+      background: #eef6fb;
       padding: 10px;
+      border-radius: 8px;
+      margin-top: 15px;
     }
-
-    .popup ul li {
-      padding: 6px 10px;
-    }
-
-    .popup ul li:hover {
-      background-color: #eee;
+    .upload-note {
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 5px;
     }
   </style>
-
   <script>
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('splash').style.display = 'none';
         document.getElementById('main').style.display = 'block';
-      }, 5000);
+      }, 4500); // 4.5 seconds
     };
-
-    function toggleMore() {
-      const menu = document.getElementById("moreOptions");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
   </script>
 </head>
-
 <body>
   <!-- Splash Screen -->
   <div id="splash">
     <h1>SoundMuse AI</h1>
-    <p>Your friendly music assistant – listening, guiding, and helping grow your creativity…</p>
+    <p>Your friendly music assistant, listening, guiding, and helping grow your creativity...</p>
   </div>
 
   <div id="main">
@@ -159,57 +143,50 @@
     <div class="toolbar">
       <button title="User Profile">👤</button>
       <button title="Home">🏠</button>
-      <button title="My Uploads">⬆️</button>
+      <button title="Uploads">⬆️</button>
       <button title="Search">🔍</button>
       <button title="Saved Chats">💬</button>
       <button title="Saved Lyrics">🗒️</button>
-      <button title="Download">⬇️</button>
-      <button title="More Options" onclick="toggleMore()">⋯</button>
+      <button title="Downloads">⬇️</button>
+      <button title="More Options">⋯</button>
+      <div class="profile">
+        <img src="assets/starling-profile.png" alt="SoundMuse Profile">
+        <div class="profile-name">SoundMuse</div>
+      </div>
     </div>
 
-    <!-- More Options Menu -->
-    <div class="popup" id="moreOptions">
-      <ul>
-        <li><a href="#">My Account</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </div>
-
-    <!-- Main Layout -->
+    <!-- Main Content -->
     <div class="main-grid">
       <!-- Left Panel -->
-      <div class="panel left-panel">
+      <div class="panel">
         <h2>SoundMuseAI GPT</h2>
-        <div class="chat-box">Chat / Music Analysis / Suggestions will appear here…</div>
-        <input type="text" placeholder="User types here…" />
+        <iframe
+          src="https://chatgpt.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai"
+          style="width:100%; height:75vh; border: none; border-radius: 10px;"
+          title="SoundMuseAI GPT Chat">
+        </iframe>
       </div>
 
       <!-- Center Panel -->
-      <div class="panel center-panel">
+      <div class="panel">
         <h2>Spectrogram Display</h2>
         <div class="spectrogram-box">[Live or Uploaded Spectrogram Placeholder]</div>
 
         <h3>AI-Generated Art</h3>
         <div class="image-box">[Generated Image Appears Here]</div>
 
-        <div class="upload-controls">
-          <label for="ratio">Ratio:</label>
-          <select id="ratio">
-            <option value="1:1">1:1</option>
-            <option value="3:2">3:2</option>
-            <option value="2:3">2:3</option>
-          </select>
-
-          <label for="music-upload">Upload Music File:</label>
-          <input type="file" id="music-upload" accept=".mp3,.wav,.midi" />
+        <div class="upload-section">
+          <h3>Upload Your Music File</h3>
+          <p>Select a file to analyse or generate lyrics/art from:</p>
+          <input type="file" accept=".wav,.mp3,.midi">
+          <p class="upload-note">Supported formats: WAV, MP3, MIDI</p>
         </div>
       </div>
 
       <!-- Right Panel -->
-      <div class="panel right-panel">
+      <div class="panel">
         <h2>Lyrics / Canvas</h2>
-        <textarea rows="15" placeholder="Suggested lyrics or instructions appear here… (Acts like Canvas for AI + User input)"></textarea>
+        <textarea rows="22" placeholder="Suggested lyrics or instructions appear here... (Acts like Canvas for AI + User input)"></textarea>
       </div>
     </div>
   </div>
