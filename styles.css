@@ -44,7 +44,7 @@ body {
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
 }
 
@@ -77,7 +77,7 @@ body {
   background: white;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -146,6 +146,7 @@ body {
     min-height: auto;
   }
 }
+
 .center-panel {
   display: flex;
   flex-direction: column;
@@ -167,6 +168,7 @@ body {
   min-height: 100px;
   margin-bottom: 10px;
 }
+
 /* Music Player Bar */
 .music-player {
   width: 100%;
@@ -177,14 +179,15 @@ body {
   left: 0;
   display: flex;
   justify-content: center;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .music-player audio {
   width: 90%;
   max-width: 800px;
 }
-/* Sidebar User Profile */
+
+/* === Sidebar User Profile === */
 .sidebar-user {
   display: flex;
   flex-direction: column;
