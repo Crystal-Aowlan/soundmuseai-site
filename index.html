@@ -135,3 +135,74 @@
 </body>
 
 </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundMuse AI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="sidebar">
+      <img src="demo-profile-bird.jpg" alt="SoundMuse Profile" class="profile-pic" />
+      <div class="username">SoundMuse</div>
+      <nav class="toolbar">
+        <a href="index.html" title="Home">⌂</a>
+        <a href="saved-lyrics.html" title="Lyrics">✎</a>
+        <a href="saved-chats.html" title="Chats">💬</a>
+        <a href="Search.html" title="Search">🔍</a>
+        <a href="uploads.html" title="Upload">📂</a>
+        <a href="more.html" title="More">⋮</a>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <h1>SoundMuse AI – Your Creative Music Companion</h1>
+        <p>Upload a track, generate lyrics or cover art, and explore musical ideas</p>
+      </header>
+
+      <div class="panels">
+        <div class="panel chat-panel">
+          <h2>SoundMuseAI GPT</h2>
+          <div class="chat-box" contenteditable="true">Chat / Music Analysis / Suggestions will appear here...</div>
+          <input type="text" placeholder="User types here..." />
+        </div>
+
+        <div class="panel spectrogram-panel">
+          <h2>Spectrogram Display</h2>
+          <div class="spectrogram-placeholder">[Live or Uploaded Spectrogram Placeholder]</div>
+
+          <h3>AI-Generated Art</h3>
+          <div class="art-box">[Generated Image Appears Here]</div>
+
+          <label for="ratio">Ratio:</label>
+          <select id="ratio">
+            <option value="1:1">1:1</option>
+            <option value="3:2">3:2</option>
+            <option value="2:3">2:3</option>
+            <option value="16:9">16:9</option>
+          </select>
+
+          <div class="upload-section">
+            <h3>Upload Your Music File</h3>
+            <p>Select a file to analyse or generate lyrics/art from:</p>
+            <input type="file" accept=".wav,.mp3,.midi" />
+            <small>Supported formats: WAV, MP3, MIDI</small>
+          </div>
+        </div>
+
+        <div class="panel lyrics-panel">
+          <h2>Lyrics / Canvas</h2>
+          <textarea placeholder="Suggested lyrics or instructions appear here... (Acts like Canvas for AI + User input)"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
