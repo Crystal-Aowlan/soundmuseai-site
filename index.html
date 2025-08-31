@@ -6,35 +6,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e6ecf5, #f2fcfc);
+      color: #333;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: #f8f8fb;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #ddd;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+
+    .user-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .main-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .panel {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+    }
+
+    textarea,
+    input[type="file"],
+    select {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+
+    .upload-controls {
+      margin-top: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .placeholder-box {
+      border: 1px dashed #ccc;
+      padding: 1rem;
+      text-align: center;
+      color: #888;
+      min-height: 100px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="sidebar">
-    <img src="demo-profile-bird.jpg" alt="Profile Picture" class="profile-pic" />
-    <div class="profile-name">SoundMuse</div>
-    <nav>
-      <a href="index.html"><img src="icons/home.svg" alt="Home"></a>
-      <a href="Search.html"><img src="icons/search.svg" alt="Search"></a>
-      <a href="uploads.html"><img src="icons/upload.svg" alt="Uploads"></a>
-      <a href="saved-lyrics.html"><img src="icons/lyrics.svg" alt="Lyrics"></a>
-      <a href="saved-chats.html"><img src="icons/chat.svg" alt="Chat"></a>
-      <a href="more.html"><img src="icons/more.svg" alt="More"></a>
-    </nav>
+  <div class="toolbar">
+    <div class="profile-container">
+      <img src="demo-profile-bird.jpg" alt="Profile Bird" class="profile-img" />
+      <span class="user-name">SoundMuse</span>
+    </div>
   </div>
 
-  <main class="grid-container">
-    <section class="panel">
-      <h2>SoundMuseAI GPT</h2>
-      <div class="chat-box" id="chat-box">Chat / Music Analysis / Suggestions will appear here…</div>
-      <input type="text" class="input-box" placeholder="User types here…">
-    </section>
+  <div class="main-container">
+    <!-- GPT Panel -->
+    <div class="panel">
+      <div class="section-title">SoundMuseAI GPT</div>
+      <div class="placeholder-box">Chat / Music Analysis / Suggestions will appear here…</div>
+      <textarea placeholder="User types here…"></textarea>
+    </div>
 
-    <section class="panel">
-      <h2>Spectrogram Display</h2>
-      <div class="spectrogram-box">[Live or Uploaded Spectrogram Placeholder]</div>
+    <!-- Spectrogram + Art -->
+    <div class="panel">
+      <div class="section-title">Spectrogram Display</div>
+      <div class="placeholder-box">[Live or Uploaded Spectrogram Placeholder]</div>
 
-      <h3>AI-Generated Art</h3>
-      <div class="image-box">[Generated Image Appears Here]</div>
+      <div class="section-title">AI-Generated Art</div>
+      <div class="placeholder-box">[Generated Image Appears Here]</div>
 
       <div class="upload-controls">
         <label for="ratio">Ratio:</label>
@@ -42,20 +118,20 @@
           <option value="1:1">1:1</option>
           <option value="3:2">3:2</option>
           <option value="16:9">16:9</option>
-          <option value="9:16">9:16</option>
         </select>
-        <br><br>
-        <label for="music-file">Upload Your Music File:</label>
-        <input type="file" id="music-file">
+
+        <label for="file">Upload Your Music File:</label>
+        <input type="file" id="file" accept=".wav,.mp3,.midi" />
         <small>Supported formats: WAV, MP3, MIDI</small>
       </div>
-    </section>
+    </div>
 
-    <section class="panel">
-      <h2>Lyrics / Canvas</h2>
-      <textarea class="lyrics-box" placeholder="Suggested lyrics or instructions appear here… (Acts like Canvas for AI + User input)"></textarea>
-    </section>
-  </main>
+    <!-- Lyrics Panel -->
+    <div class="panel">
+      <div class="section-title">Lyrics / Canvas</div>
+      <textarea rows="12" placeholder="Suggested lyrics or instructions appear here… (Acts like Canvas for AI + User input)"></textarea>
+    </div>
+  </div>
 </body>
 
 </html>
