@@ -4,166 +4,151 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoundMuse AI</title>
-  <link href="https://unpkg.com/lucide@latest/dist/lucide.css" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e7e6f9, #d5f3ef);
+    }
+
+    /* Splash loading screen */
+    #splash {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, #ded7f7, #cbf3e8);
       display: flex;
-      height: 100vh;
-      background: linear-gradient(to bottom right, #e8e6f9, #d8f4f2);
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #6a6e85;
+      z-index: 9999;
+      transition: opacity 1s ease-out;
+    }
+
+    #app {
+      display: flex;
     }
 
     .sidebar {
-      width: 80px;
-      background-color: #f3f1fc;
+      width: 60px;
+      background-color: #f0f0f8;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 10px 0;
-      gap: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      gap: 15px;
     }
 
-    .sidebar-icon {
-      width: 32px;
-      height: 32px;
-      color: #4a4a4a;
-      cursor: pointer;
-    }
-
-    .profile {
-      text-align: center;
-    }
-
-    .profile img {
-      width: 48px;
-      height: 48px;
+    .sidebar img.profile {
+      width: 40px;
       border-radius: 50%;
     }
 
-    .profile-name {
-      font-size: 12px;
-      margin-top: 4px;
+    .sidebar span {
+      font-size: 10px;
+    }
+
+    .sidebar button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5em;
     }
 
     .main {
       flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto 1fr auto;
-      gap: 10px;
-      padding: 20px;
-    }
-
-    .gpt-chat {
-      grid-column: 1;
-    }
-
-    .generated-art {
-      grid-column: 2;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .canvas-panel {
-      grid-column: 3;
-    }
-
-    select, input[type="file"] {
-      margin-top: 10px;
-    }
-
-    #downloadModal {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 100px;
-      background: white;
       padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
+      gap: 20px;
     }
 
-    .download-button {
-      margin-top: 10px;
-      padding: 10px 20px;
+    .panel {
+      flex: 1;
+      background-color: white;
+      padding: 10px;
       border-radius: 10px;
-      background: #aab6fa;
-      color: white;
-      font-size: 16px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    #gpt-embed {
+      width: 100%;
+      height: 500px;
       border: none;
+      border-radius: 10px;
+    }
+
+    #spectrograph-placeholder {
+      height: 150px;
+      background-color: #eee;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 150px;
+      margin-bottom: 10px;
+    }
+
+    #canvas-area {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      resize: both;
+      overflow: auto;
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <div class="profile">
-      <img src="starling-icon.png" alt="User" />
-      <div class="profile-name">SoundMuse</div>
-    </div>
-    <i data-lucide="home" class="sidebar-icon"></i>
-    <i data-lucide="upload" class="sidebar-icon"></i>
-    <i data-lucide="search" class="sidebar-icon"></i>
-    <i data-lucide="message-square" class="sidebar-icon"></i>
-    <i data-lucide="file-text" class="sidebar-icon"></i>
-    <i data-lucide="download" class="sidebar-icon" onclick="toggleDownloadModal()"></i>
-    <i data-lucide="more-horizontal" class="sidebar-icon"></i>
-  </div>
+  <div id="splash">SoundMuse AI – your friendly music assistant</div>
 
-  <div class="main">
-    <div class="gpt-chat">
-      <h3>SoundMuse AI Chat</h3>
-      <iframe 
-        src="https://chatgpt.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai" 
-        width="100%" 
-        height="500px" 
-        style="border-radius: 12px; border: none;">
-      </iframe>
+  <div id="app" style="display: none;">
+    <div class="sidebar">
+      <img src="starling.png" alt="User" class="profile" />
+      <span>SoundMuse</span>
+      <button title="Home">⌂</button>
+      <button title="My Uploads">⇧</button>
+      <button title="Search">🔍</button>
+      <button title="Saved Chats">💬</button>
+      <button title="Saved Lyrics">📄</button>
+      <button title="Download">⭳</button>
+      <button title="More">⋮</button>
     </div>
 
-    <div class="generated-art">
-      <h3>Generated Art</h3>
-      <label for="imageRatioSelect">Image Ratio:</label>
-      <select id="imageRatioSelect">
-        <option value="1:1">1:1 (Square)</option>
-        <option value="3:2">3:2</option>
-        <option value="2:3">2:3</option>
-        <option value="16:9">16:9</option>
-      </select>
-      <div style="margin-top: 10px; width: 100%; height: 250px; background: #fff; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center;">
-        <span>Image will appear here</span>
+    <div class="main">
+      <div class="panel">
+        <h3>SoundMuse AI Chat</h3>
+        <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai"></iframe>
       </div>
-
-      <label for="fileUpload">Upload Music File</label>
-      <input type="file" id="fileUpload" accept=".wav,.mp3,.mid" />
+      <div class="panel">
+        <h3>Generated Art</h3>
+        <label for="ratio">Image Ratio:</label>
+        <select id="ratio">
+          <option value="1:1">1:1 (Square)</option>
+          <option value="3:2">3:2</option>
+          <option value="2:3">2:3</option>
+          <option value="16:9">16:9</option>
+        </select>
+        <div id="spectrograph-placeholder">Spectrograph appears here</div>
+        <div style="height: 200px; background: #ddd; display:flex; align-items:center; justify-content:center;">Image will appear here</div>
+        <label for="upload">Upload Music File</label><br/>
+        <input type="file" id="upload" accept=".wav,.mp3,.midi" />
+      </div>
+      <div class="panel">
+        <h3>Lyrics / Canvas Editor</h3>
+        <textarea id="canvas-area" placeholder="AI suggestions or editable lyrics will appear here..."></textarea>
+      </div>
     </div>
-
-    <div class="canvas-panel">
-      <h3>Lyrics / Canvas Editor</h3>
-      <textarea style="width: 100%; height: 90%;"></textarea>
-    </div>
-  </div>
-
-  <div id="downloadModal">
-    <button onclick="toggleDownloadModal()">X</button>
-    <h2>Download</h2>
-    <label><input type="checkbox" checked> Chat</label><br />
-    <label><input type="checkbox" checked> Lyrics</label><br />
-    <label><input type="checkbox" checked> Spectrogram</label><br />
-    <label><input type="checkbox" checked> Music Score</label><br />
-    <button class="download-button">Download</button>
   </div>
 
   <script>
-    function toggleDownloadModal() {
-      const modal = document.getElementById("downloadModal");
-      modal.style.display = modal.style.display === "none" ? "block" : "none";
-    }
-    lucide.createIcons();
+    setTimeout(() => {
+      document.getElementById("splash").style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+        document.getElementById("app").style.display = "flex";
+      }, 1000);
+    }, 3500); // 3.5s splash screen duration
   </script>
 </body>
 </html>
