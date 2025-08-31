@@ -4,13 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoundMuse AI</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #e7e6f9, #d5f3ef);
-    }
-
     /* Splash loading screen */
     #splash {
       position: fixed;
@@ -27,34 +22,14 @@
       transition: opacity 1s ease-out;
     }
 
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e7e6f9, #d5f3ef);
+    }
+
     #app {
       display: flex;
-    }
-
-    .sidebar {
-      width: 60px;
-      background-color: #f0f0f8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 0;
-      gap: 15px;
-    }
-
-    .sidebar img.profile {
-      width: 40px;
-      border-radius: 50%;
-    }
-
-    .sidebar span {
-      font-size: 10px;
-    }
-
-    .sidebar button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5em;
     }
 
     .main {
@@ -100,33 +75,39 @@
   </style>
 </head>
 <body>
+  <!-- Splash Screen -->
   <div id="splash">SoundMuse AI – your friendly music assistant</div>
 
+  <!-- Main App Container -->
   <div id="app" style="display: none;">
-   <div class="sidebar">
+    
+    <!-- Toolbar / Sidebar -->
+    <div class="toolbar">
 
-  <!-- Profile Block -->
-  <a href="profile.html" class="sidebar-user" title="User Profile">
-    <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
-    <span class="sidebar-username">SoundMuse</span>
-  </a>
+      <!-- Profile Block -->
+      <a href="profile.html" class="sidebar-user" title="User Profile">
+        <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+        <span class="sidebar-username">SoundMuse</span>
+      </a>
 
-  <!-- Buttons/Links -->
-  <button title="Home">🏠</button>
-  <button title="My Uploads">⬆️</button>
-  <button title="Search">🔍</button>
-  <button title="Saved Chats">💬</button>
-  <button title="Saved Lyrics">📝</button>
-  <button title="Download">⬇️</button>
-  <button title="More">⋯</button>
+      <!-- Toolbar Buttons -->
+      <button title="Home">🏠</button>
+      <button title="My Uploads">⬆️</button>
+      <button title="Search">🔍</button>
+      <button title="Saved Chats">💬</button>
+      <button title="Saved Lyrics">📝</button>
+      <button title="Download">⬇️</button>
+      <button title="More">⋯</button>
 
-</div>
+    </div>
 
+    <!-- Main Panels -->
     <div class="main">
       <div class="panel">
         <h3>SoundMuse AI Chat</h3>
         <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai"></iframe>
       </div>
+
       <div class="panel">
         <h3>Generated Art</h3>
         <label for="ratio">Image Ratio:</label>
@@ -136,11 +117,16 @@
           <option value="2:3">2:3</option>
           <option value="16:9">16:9</option>
         </select>
+
         <div id="spectrograph-placeholder">Spectrograph appears here</div>
-        <div style="height: 200px; background: #ddd; display:flex; align-items:center; justify-content:center;">Image will appear here</div>
+        <div style="height: 200px; background: #ddd; display:flex; align-items:center; justify-content:center;">
+          Image will appear here
+        </div>
+
         <label for="upload">Upload Music File</label><br/>
         <input type="file" id="upload" accept=".wav,.mp3,.midi" />
       </div>
+
       <div class="panel">
         <h3>Lyrics / Canvas Editor</h3>
         <textarea id="canvas-area" placeholder="AI suggestions or editable lyrics will appear here..."></textarea>
@@ -148,6 +134,15 @@
     </div>
   </div>
 
+  <!-- Music Player -->
+  <div class="music-player">
+    <audio id="audioPlayer" controls>
+      <source src="uploads/sample-track.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Splash Logic -->
   <script>
     setTimeout(() => {
       document.getElementById("splash").style.opacity = 0;
@@ -159,10 +154,3 @@
   </script>
 </body>
 </html>
-<!-- Music Player -->
-<div class="music-player">
-  <audio id="audioPlayer" controls>
-    <source src="uploads/sample-track.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-</div>
