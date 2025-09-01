@@ -218,3 +218,12 @@ body {
 .sidebar.collapsed .sidebar-username {
   display: none;
 }
+@keyframes starlingGlow {
+  0% { box-shadow: 0 0 4px #a17cf1; }
+  50% { box-shadow: 0 0 10px #a17cf1, 0 0 20px #9beee6; }
+  100% { box-shadow: 0 0 4px #a17cf1; }
+}
+
+.profile-pic {
+  animation: starlingGlow 3s ease-in-out infinite;
+}
