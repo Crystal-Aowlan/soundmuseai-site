@@ -5,6 +5,38 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #eae6f9, #d6f4f1);
   color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* === Dark Theme === */
+body.dark-theme {
+  background: linear-gradient(135deg, #1e1e2f, #2a3a3d);
+  color: #eee;
+}
+body.dark-theme .panel {
+  background: #2c2c3e;
+  color: #eee;
+}
+body.dark-theme .toolbar {
+  background: linear-gradient(180deg, #3b2f56, #265454);
+  border-right: 1px solid #444;
+}
+body.dark-theme .spectrogram-box,
+body.dark-theme .image-box,
+body.dark-theme .image-placeholder {
+  background: #444;
+  border-color: #666;
+  color: #eee;
+}
+body.dark-theme .input-box,
+body.dark-theme textarea,
+body.dark-theme select {
+  background: #333;
+  color: #eee;
+  border-color: #666;
+}
+body.dark-theme .music-player {
+  background: #111;
 }
 
 /* === Toolbar === */
@@ -15,11 +47,12 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 60px;
+  width: 80px;
   background: linear-gradient(180deg, #c3b3e5, #a3d6d6);
   border-right: 1px solid #bbb;
   padding-top: 10px;
   z-index: 10;
+  align-items: center;
 }
 
 .toolbar button {
@@ -39,13 +72,14 @@ body {
 .popup {
   display: none;
   position: fixed;
-  left: 70px;
+  left: 90px;
   top: 10px;
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
+  z-index: 100;
 }
 
 .popup ul {
@@ -67,7 +101,7 @@ body {
 .main-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr;
-  margin-left: 70px;
+  margin-left: 90px;
   padding: 20px;
   gap: 20px;
 }
@@ -82,6 +116,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Left Panel – Chat */
@@ -139,9 +174,8 @@ body {
 @media (max-width: 1000px) {
   .main-grid {
     grid-template-columns: 1fr;
-    margin-left: 60px;
+    margin-left: 80px;
   }
-
   .panel {
     min-height: auto;
   }
@@ -169,7 +203,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Music Player Bar */
+/* === Music Player Bar === */
 .music-player {
   width: 100%;
   background: #1e1e1e;
@@ -194,21 +228,28 @@ body {
   align-items: center;
   margin-bottom: 20px;
   padding: 10px 0;
+  text-align: center;
 }
 
 .profile-pic {
   width: 60px;
   height: 60px;
-  border-radius: 50%;        /* Makes it a circle */
-  object-fit: cover;         /* Crops nicely */
-  border: 2px solid #d6c8f5; /* Soft mauve border */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d6c8f5;
   margin-bottom: 8px;
+  transition: transform 0.3s ease;
 }
 
 .sidebar-username {
   font-size: 14px;
   font-weight: bold;
   color: #333;
+  white-space: nowrap;
+}
+
+body.dark-theme .sidebar-username {
+  color: #eee;
 }
 
 .profile-pic:hover {
@@ -218,49 +259,14 @@ body {
 .sidebar.collapsed .sidebar-username {
   display: none;
 }
-@keyframes starlingGlow {
-  0% { box-shadow: 0 0 4px #a17cf1; }
-  50% { box-shadow: 0 0 10px #a17cf1, 0 0 20px #9beee6; }
-  100% { box-shadow: 0 0 4px #a17cf1; }
-}
 
-.profile-pic {
-  animation: starlingGlow 3s ease-in-out infinite;
-}
-/* === Dark Theme === */
-body.dark-theme {
-  background: linear-gradient(135deg, #1c1c2b, #1b2b2f);
-  color: #f0f0f0;
-}
-
-body.dark-theme .panel {
-  background: #2b2b3c;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-theme .toolbar {
-  background: linear-gradient(180deg, #403c5a, #264d4d);
-}
-
-body.dark-theme .music-player {
-  background: #121212;
+/* === Starling Avatar Glow Animation === */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 4px #aaa; }
+  50% { box-shadow: 0 0 12px #e0aaff; }
+  100% { box-shadow: 0 0 4px #aaa; }
 }
 
 body.dark-theme .profile-pic {
-  border-color: #8886c0;
-}
-
-body.dark-theme .spectrogram-box,
-body.dark-theme .image-box,
-body.dark-theme .image-placeholder {
-  background: #444;
-  border-color: #999;
-}
-
-body.dark-theme textarea,
-body.dark-theme input,
-body.dark-theme select {
-  background: #333;
-  color: #eee;
-  border: 1px solid #666;
+  animation: glowPulse 2.5s infinite ease-in-out;
 }
