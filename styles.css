@@ -227,3 +227,40 @@ body {
 .profile-pic {
   animation: starlingGlow 3s ease-in-out infinite;
 }
+/* === Dark Theme === */
+body.dark-theme {
+  background: linear-gradient(135deg, #1c1c2b, #1b2b2f);
+  color: #f0f0f0;
+}
+
+body.dark-theme .panel {
+  background: #2b2b3c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .toolbar {
+  background: linear-gradient(180deg, #403c5a, #264d4d);
+}
+
+body.dark-theme .music-player {
+  background: #121212;
+}
+
+body.dark-theme .profile-pic {
+  border-color: #8886c0;
+}
+
+body.dark-theme .spectrogram-box,
+body.dark-theme .image-box,
+body.dark-theme .image-placeholder {
+  background: #444;
+  border-color: #999;
+}
+
+body.dark-theme textarea,
+body.dark-theme input,
+body.dark-theme select {
+  background: #333;
+  color: #eee;
+  border: 1px solid #666;
+}
