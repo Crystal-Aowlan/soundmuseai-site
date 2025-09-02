@@ -286,3 +286,18 @@ body.dark-theme .profile-pic {
   0%   { box-shadow: 0 0 8px 2px rgba(150, 200, 255, 0.3); }
   100% { box-shadow: 0 0 16px 6px rgba(200, 240, 255, 0.6); }
 }
+body {
+  background-image: url('Background-aurora.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #000; /* fallback if image doesn't load */
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* adjust transparency */
+  z-index: -1;
+}
