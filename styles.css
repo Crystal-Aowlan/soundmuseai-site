@@ -38,6 +38,16 @@ body.dark-theme .toolbar {
 body.dark-theme .toolbar button:hover {
   filter: brightness(1.2);
 }
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('splash-background.png') no-repeat center center;
+  background-size: cover;
+  z-index: 9999;
+}
 
 /* === Toolbar (Sidebar) === */
 .toolbar {
