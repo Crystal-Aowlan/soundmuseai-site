@@ -106,33 +106,33 @@ body.dark-theme .profile-pic {
   100% { box-shadow: 0 0 16px 6px rgba(200, 240, 255, 0.6); }
 }
 
-/* === Main Grid Layout === */
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  margin-left: 100px;
-  padding: 20px;
+/* === MAIN LAYOUT CONTAINER === */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   gap: 20px;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.panel {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-height: 80vh;
+/* === LEFT PANEL === */
+.left-panel {
+  flex: 1;
+  max-width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  transition: background 0.5s, color 0.5s;
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-y: auto;
+  margin-left: 100px; /* Clears the fixed toolbar */
 }
 
-/* === Left Panel === */
 .left-panel .chat-box {
   flex: 1;
-  margin-left: 100px;  /* Safely clears the sidebar */
-}
-
   background: #f2f2f2;
   padding: 10px;
   border-radius: 6px;
@@ -146,8 +146,10 @@ body.dark-theme .profile-pic {
   border: 1px solid #ccc;
 }
 
-/* === Center Panel === */
+/* === CENTER PANEL === */
 .center-panel {
+  flex: 1;
+  max-width: 34%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -179,15 +181,32 @@ body.dark-theme .profile-pic {
   font-size: 14px;
 }
 
-/* === Right Panel === */
-.right-panel textarea {
+/* === RIGHT PANEL === */
+.right-panel {
   flex: 1;
-  resize: vertical;
+  max-width: 34%;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+  background: #ffffff;
   border-radius: 6px;
   border: 1px solid #ccc;
   min-height: 300px;
   font-size: 14px;
+}
+
+}
+/* Balance Panel Widths */
+.left-panel {
+  max-width: 30%;
+}
+
+.center-panel {
+  max-width: 34%;
+}
+
+.right-panel {
+  max-width: 34%;
 }
 
 /* === More Popup === */
