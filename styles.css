@@ -1,234 +1,199 @@
-/* === Base Styles === */
-body {
+/* === SoundMuseAI CSS – Updated for Clarity, Responsiveness, and Glow === */
+
+/* Global Reset */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #eae6f9, #d6f4f1);
-  color: #333;
-  transition: background 0.3s ease, color 0.3s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s ease;
+  background: linear-gradient(to bottom right, #eef2ff, #d8f2ef);
+  color: #111;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body.dark-mode {
-  background: #1e1e2f;
+  background: linear-gradient(to bottom right, #0f0f2e, #001f1f);
   color: #eee;
 }
 
-/* === Splash Screen === */
-#splash {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom right, #ded7f7, #cbf3e8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #6a6e85;
-  z-index: 9999;
-  transition: opacity 1s ease-out;
-}
-
-/* === Toolbar === */
-.toolbar {
-  display: flex;
-  flex-direction: column;
+/* Sidebar */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
   width: 80px;
-  background: linear-gradient(180deg, #c3b3e5, #a3d6d6);
-  border-right: 1px solid #bbb;
-  padding-top: 10px;
-  z-index: 10;
+  height: 100vh;
+  background: linear-gradient(to bottom, #e0ccf3, #b5e0dd);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  padding-top: 10px;
+  z-index: 100;
+  transition: background 0.3s ease;
 }
 
-body.dark-mode .toolbar {
-  background: linear-gradient(180deg, #2c2c3f, #244a4a);
-  border-right: 1px solid #444;
+body.dark-mode .sidebar {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
 }
 
-.toolbar button {
-  background: none;
-  border: none;
-  font-size: 22px;
+.sidebar .icon {
+  margin: 15px 0;
   cursor: pointer;
-  color: #333;
+  width: 32px;
+  height: 32px;
   transition: transform 0.2s ease;
 }
 
-.toolbar button:hover {
-  transform: scale(1.2);
+.sidebar .icon:hover {
+  transform: scale(1.15);
 }
 
-body.dark-mode .toolbar button {
-  color: #eee;
+.sidebar .profile {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  position: relative;
 }
 
-/* === Sidebar Profile === */
-.sidebar-user {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-  text-align: center;
-  padding: 0 6px;
-}
-
-.profile-pic {
-  width: 50px;
-  height: 50px;
+.sidebar .profile img {
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #d6c8f5;
-  animation: pulse-glow 2s ease-in-out infinite;
+  border: 2px solid #fff;
+  animation: starling-glow 4s ease-in-out 1;
+  cursor: pointer;
 }
 
-body.dark-mode .profile-pic {
-  border-color: #6a5acd;
-}
-
-.sidebar-username {
-  font-size: 12px;
+.sidebar .profile span {
+  font-size: 0.75rem;
   font-weight: bold;
-  color: #333;
-  word-break: break-word;
+  text-align: center;
+  display: block;
+  margin-top: 3px;
+  color: #000;
 }
 
-body.dark-mode .sidebar-username {
-  color: #eee;
+body.dark-mode .sidebar .profile span {
+  color: #fff;
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(170, 140, 255, 0.6);
+@keyframes starling-glow {
+  0% {
+    box-shadow: 0 0 0px #fff7, 0 0 0px #a9f;
   }
   50% {
-    box-shadow: 0 0 12px rgba(170, 140, 255, 1);
+    box-shadow: 0 0 12px #fff9, 0 0 22px #a9f;
+  }
+  100% {
+    box-shadow: 0 0 0px #fff7, 0 0 0px #a9f;
   }
 }
 
-/* === Main Layout Grid === */
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  margin-left: 80px;
-  padding: 20px;
-  gap: 20px;
+/* Splash Screen */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #d5b9f7, #c6e0f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
 }
 
-/* === Panels === */
-.panel {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+body.dark-mode .splash-screen {
+  background: linear-gradient(to bottom right, #1a103d, #14242f);
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Main Content Layout */
+.main {
+  margin-left: 80px;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  transition: padding 0.3s ease;
+}
+
+.panel {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  flex: 1 1 calc(33.33% - 40px);
+  min-width: 300px;
+  max-width: 100%;
+  transition: background 0.3s ease;
 }
 
 body.dark-mode .panel {
-  background: #2a2a3a;
+  background: #1f1f2e;
   color: #eee;
 }
 
-/* === GPT Chat Panel === */
-#gpt-embed {
+textarea, select, input[type="file"] {
   width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 10px;
-}
-
-/* === Spectrograph Section === */
-.spectrogram-box {
-  background-color: #eee;
-  height: 150px;
-  border-radius: 8px;
-  text-align: center;
-  line-height: 150px;
-  margin-bottom: 10px;
-}
-
-body.dark-mode .spectrogram-box {
-  background-color: #444;
-  color: #ccc;
-}
-
-/* === Art + Upload Section === */
-.image-upload-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#ratio {
-  padding: 5px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  max-width: 150px;
-  margin-bottom: 8px;
-}
-
-#upload {
-  margin-top: 8px;
-}
-
-/* === Lyrics / Canvas Editor === */
-#canvas-area {
-  width: 100%;
-  height: 300px;
+  margin-top: 10px;
   padding: 10px;
+  font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  resize: vertical;
 }
 
-body.dark-mode #canvas-area {
-  background: #333;
-  color: #fff;
-  border-color: #666;
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode input[type="file"] {
+  background: #2a2a3a;
+  color: #eee;
+  border: 1px solid #444;
 }
 
-/* === Music Player === */
-.music-player {
-  width: 100%;
-  background: #1e1e1e;
-  padding: 10px;
+/* Responsive Tablet View */
+@media (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .panel {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+/* Audio Player */
+.audio-player {
   position: fixed;
   bottom: 0;
   left: 0;
+  width: 100%;
+  background: #111;
+  color: #fff;
   display: flex;
+  align-items: center;
   justify-content: center;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 5;
+  padding: 10px;
+  z-index: 200;
 }
 
-.music-player audio {
-  width: 90%;
-  max-width: 800px;
-}
-
-/* === Dark Mode Toggle === */
-.theme-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 20;
-  background: #fff;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 6px 12px;
+/* Glow effect on hover for clickable items */
+.sidebar .profile:hover img,
+.sidebar .icon:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px #a9f;
+  transition: box-shadow 0.3s ease;
   cursor: pointer;
-  font-size: 14px;
-}
-
-body.dark-mode .theme-toggle {
-  background: #444;
-  color: #eee;
-  border-color: #888;
 }
