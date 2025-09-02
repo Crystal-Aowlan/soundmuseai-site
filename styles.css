@@ -130,6 +130,9 @@ body.dark-theme .profile-pic {
 /* === Left Panel === */
 .left-panel .chat-box {
   flex: 1;
+  margin-left: 100px;  /* Safely clears the sidebar */
+}
+
   background: #f2f2f2;
   padding: 10px;
   border-radius: 6px;
