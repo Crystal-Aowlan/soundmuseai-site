@@ -5,74 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoundMuse AI</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Splash loading screen */
-    #splash {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom right, #ded7f7, #cbf3e8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #6a6e85;
-      z-index: 9999;
-      transition: opacity 1s ease-out;
-    }
+  <script>
+    // Splash screen delay
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const splash = document.getElementById("splash");
+        splash.style.opacity = 0;
+        setTimeout(() => splash.style.display = "none", 1000);
+        document.getElementById("app").style.display = "flex";
+      }, 3500);
+    });
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #e7e6f9, #d5f3ef);
+    // Dark/light mode toggle
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
     }
-
-    #app {
-      display: flex;
-    }
-
-    .main {
-      flex: 1;
-      display: flex;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .panel {
-      flex: 1;
-      background-color: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    #gpt-embed {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 10px;
-    }
-
-    #spectrograph-placeholder {
-      height: 150px;
-      background-color: #eee;
-      border-radius: 8px;
-      text-align: center;
-      line-height: 150px;
-      margin-bottom: 10px;
-    }
-
-    #canvas-area {
-      width: 100%;
-      height: 500px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px;
-      resize: both;
-      overflow: auto;
-    }
-  </style>
+  </script>
 </head>
 <body>
   <!-- Splash Screen -->
@@ -80,17 +28,15 @@
 
   <!-- Main App Container -->
   <div id="app" style="display: none;">
-    
-    <!-- Toolbar / Sidebar -->
+    <!-- Sidebar Toolbar -->
     <div class="toolbar">
-
-      <!-- Profile Block -->
-      <a href="profile.html" class="sidebar-user" title="User Profile">
-        <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <!-- Starling Avatar + Name -->
+      <div class="sidebar-user">
+        <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic glowing-avatar" />
         <span class="sidebar-username">SoundMuse</span>
-      </a>
+      </div>
 
-      <!-- Toolbar Buttons -->
+      <!-- Navigation Icons -->
       <button title="Home">🏠</button>
       <button title="My Uploads">⬆️</button>
       <button title="Search">🔍</button>
@@ -99,58 +45,55 @@
       <button title="Download">⬇️</button>
       <button title="More">⋯</button>
 
+      <!-- Theme Toggle -->
+      <button title="Toggle Theme" onclick="toggleTheme()">🌓</button>
     </div>
 
-    <!-- Main Panels -->
-    <div class="main">
-      <div class="panel">
+    <!-- Main Grid Layout -->
+    <div class="main-grid">
+      <!-- Left Panel: Chat -->
+      <div class="panel left-panel">
         <h3>SoundMuse AI Chat</h3>
-        <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai"></iframe>
+        <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai" frameborder="0"></iframe>
       </div>
 
-      <div class="panel">
+      <!-- Center Panel: Spectrograph & Image -->
+      <div class="panel center-panel">
         <h3>Generated Art</h3>
-        <label for="ratio">Image Ratio:</label>
-        <select id="ratio">
-          <option value="1:1">1:1 (Square)</option>
-          <option value="3:2">3:2</option>
-          <option value="2:3">2:3</option>
-          <option value="16:9">16:9</option>
-        </select>
-
-        <div id="spectrograph-placeholder">Spectrograph appears here</div>
-        <div style="height: 200px; background: #ddd; display:flex; align-items:center; justify-content:center;">
-          Image will appear here
+        <div class="spectrogram-container">
+          <div id="spectrograph-placeholder">Spectrograph appears here</div>
         </div>
 
-        <label for="upload">Upload Music File</label><br/>
-        <input type="file" id="upload" accept=".wav,.mp3,.midi" />
+        <div class="image-upload-container">
+          <label for="ratio">Image Ratio:</label>
+          <select id="ratio">
+            <option value="1:1">1:1 (Square)</option>
+            <option value="3:2">3:2</option>
+            <option value="2:3">2:3</option>
+            <option value="16:9">16:9</option>
+          </select>
+
+          <div class="image-placeholder">Image will appear here</div>
+
+          <label for="upload">Upload Music File</label><br />
+          <input type="file" id="upload" accept=".wav,.mp3,.midi" />
+        </div>
       </div>
 
-      <div class="panel">
+      <!-- Right Panel: Lyrics Canvas -->
+      <div class="panel right-panel">
         <h3>Lyrics / Canvas Editor</h3>
         <textarea id="canvas-area" placeholder="AI suggestions or editable lyrics will appear here..."></textarea>
       </div>
     </div>
   </div>
 
-  <!-- Music Player -->
+  <!-- Music Player Fixed Bar -->
   <div class="music-player">
     <audio id="audioPlayer" controls>
       <source src="uploads/sample-track.mp3" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
   </div>
-
-  <!-- Splash Logic -->
-  <script>
-    setTimeout(() => {
-      document.getElementById("splash").style.opacity = 0;
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-        document.getElementById("app").style.display = "flex";
-      }, 1000);
-    }, 3500); // 3.5s splash screen duration
-  </script>
 </body>
 </html>
