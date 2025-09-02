@@ -208,6 +208,14 @@ body.dark-theme .profile-pic {
 .right-panel {
   max-width: 34%;
 }
+/* === Main Panel Row Layout === */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+  height: 100%;
+}
 
 /* === More Popup === */
 .popup {
