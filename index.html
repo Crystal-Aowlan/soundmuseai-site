@@ -103,38 +103,47 @@
 
     </div>
 
-    <!-- Main Panels -->
-    <div class="main">
-      <div class="panel">
-        <h3>SoundMuse AI Chat</h3>
-        <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38a6730ac70745-soundmuseai"></iframe>
-      </div>
-
-      <div class="panel">
-        <h3>Generated Art</h3>
-        <label for="ratio">Image Ratio:</label>
-        <select id="ratio">
-          <option value="1:1">1:1 (Square)</option>
-          <option value="3:2">3:2</option>
-          <option value="2:3">2:3</option>
-          <option value="16:9">16:9</option>
-        </select>
-
-        <div id="spectrograph-placeholder">Spectrograph appears here</div>
-        <div style="height: 200px; background: #ddd; display:flex; align-items:center; justify-content:center;">
-          Image will appear here
-        </div>
-
-        <label for="upload">Upload Music File</label><br/>
-        <input type="file" id="upload" accept=".wav,.mp3,.midi" />
-      </div>
-
-      <div class="panel">
-        <h3>Lyrics / Canvas Editor</h3>
-        <textarea id="canvas-area" placeholder="AI suggestions or editable lyrics will appear here..."></textarea>
-      </div>
+   <!-- Main Panels -->
+<div class="main-content">
+  <div class="left-panel">
+    <div class="chat-box">
+      <h3>SoundMuse AI Chat</h3>
+      <iframe id="gpt-embed"
+        src="https://chat.openai.com/g/g-68ac96ee9cf081919a38ac6703ac70745-soundmuseai"
+        width="100%" height="500" frameborder="0">
+      </iframe>
     </div>
   </div>
+
+  <div class="center-panel">
+    <div class="spectrogram-box" id="spectrogram-placeholder">
+      Spectrogram appears here
+    </div>
+
+    <div class="image-box">
+      Image will appear here
+    </div>
+
+    <div class="upload-controls">
+      <label for="ratio">Image Ratio:</label>
+      <select id="ratio">
+        <option value="1:1">1:1 (Square)</option>
+        <option value="3:2">3:2</option>
+        <option value="2:3">2:3</option>
+        <option value="4:3">4:3</option>
+        <option value="16:9">16:9</option>
+      </select>
+
+      <br /><br />
+      <label for="upload">Upload Music File:</label><br />
+      <input type="file" id="upload" accept=".wav,.mp3,.midi" />
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <textarea id="canvas-area" placeholder="AI suggestions or editable lyrics will appear here..."></textarea>
+  </div>
+</div>
 
   <!-- Music Player -->
   <div class="music-player">
