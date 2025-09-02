@@ -154,5 +154,23 @@
       }, 1000);
     }, 3500); // 3.5s splash screen duration
   </script>
+  <!-- Theme Toggle Script -->
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Check saved theme on load
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-theme');
+  }
+
+  // Toggle theme on click
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    const theme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+  });
+</script>
+
 </body>
 </html>
