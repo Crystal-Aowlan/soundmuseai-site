@@ -246,3 +246,13 @@ body.dark-theme .profile-pic {
     min-height: auto;
   }
 }
+/* === Starling Avatar Glow (dark mode only) === */
+body.dark-theme .profile-pic {
+  animation: avatarGlow 2.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px 3px rgba(150, 200, 255, 0.4);
+}
+
+@keyframes avatarGlow {
+  0%   { box-shadow: 0 0 8px 2px rgba(150, 200, 255, 0.3); }
+  100% { box-shadow: 0 0 16px 6px rgba(200, 240, 255, 0.6); }
+}
