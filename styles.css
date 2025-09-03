@@ -8,9 +8,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #eae6f9, #d6f4f1);
   color: #333;
   transition: background 0.5s, color 0.5s;
+  background: linear-gradient(135deg, #eae6f9, #d6f4f1);
   background-image: url('Background-aurora.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -31,6 +31,16 @@ body::before {
 body.dark-theme {
   background: linear-gradient(135deg, #1f1f2f, #1a2c2c);
   color: #f1f1f1;
+  background-image: url('Background-aurora.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #000;
+}
+
+body.dark-theme::before {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 body.dark-theme .panel,
@@ -81,6 +91,9 @@ body.dark-theme .toolbar button:hover {
   padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
+  position: absolute;
+  bottom: 60px;
+  z-index: 10000;
 }
 
 /* === Toolbar (Sidebar) === */
