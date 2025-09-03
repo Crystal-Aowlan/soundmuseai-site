@@ -311,3 +311,18 @@ body.dark-theme .profile-pic {
     min-height: auto;
   }
 }
+.lyrics-snippet {
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: #222;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+body.dark-theme .lyrics-snippet {
+  background: rgba(20, 20, 20, 0.6);
+  color: #f1f1f1;
+}
