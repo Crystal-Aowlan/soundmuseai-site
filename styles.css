@@ -54,6 +54,13 @@ body.dark-theme .right-panel textarea {
   border-color: #666;
 }
 
+body.dark-theme .lyrics-snippet {
+  background: rgba(40, 40, 40, 0.9);  /* stronger contrast than before */
+  color: #f8f8f8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
 body.dark-theme .toolbar {
   background: linear-gradient(180deg, #5b4d91, #3b7b7b);
   border-right: 1px solid #666;
@@ -324,11 +331,4 @@ body.dark-theme .profile-pic {
   max-height: 400px;
   overflow-y: auto;
 }
-
-body.dark-theme .lyrics-snippet {
-  background: rgba(40, 40, 40, 0.9); /* more solid */
-  color: #f8f8f8;                    /* slightly brighter */
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1); /* subtle glow */
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
+   
