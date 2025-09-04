@@ -55,7 +55,7 @@ body.dark-theme .right-panel textarea {
 }
 
 body.dark-theme .lyrics-snippet {
-  background: rgba(40, 40, 40, 0.9);  /* stronger contrast than before */
+  background: rgba(32, 32, 48, 0.85);
   color: #f8f8f8;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
