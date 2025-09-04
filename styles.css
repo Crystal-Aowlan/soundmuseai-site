@@ -326,6 +326,9 @@ body.dark-theme .profile-pic {
 }
 
 body.dark-theme .lyrics-snippet {
-  background: rgba(20, 20, 20, 0.6);
-  color: #f1f1f1;
+  background: rgba(40, 40, 40, 0.9); /* more solid */
+  color: #f8f8f8;                    /* slightly brighter */
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1); /* subtle glow */
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
