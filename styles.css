@@ -301,7 +301,9 @@ body.dark-theme .audio-upload input[type="file"] {
   .audio-upload input[type="file"] {
     font-size: 13px;
   }
-  /* === Responsive: Tablet Landscape (e.g. 1024px) === */
+}
+
+/* === Responsive: Tablet Landscape (e.g. 1024px) === */
 @media (max-width: 1024px) {
   body {
     overflow-y: auto !important;
@@ -329,18 +331,23 @@ body.dark-theme .audio-upload input[type="file"] {
   }
 
   /* FIX: Prevent audio bar from jumping to top */
-  audio {
+  .music-player {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-    width: 90%;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .music-player audio {
+    margin: 0 auto;
+    display: block;
     max-width: 600px;
+    width: 90%;
   }
 
   /* FIX: Ensure image ratio selector is always visible */
-  .image-controls {
+  .upload-controls {
     position: relative;
     z-index: 1;
     padding-bottom: 8px;
@@ -433,6 +440,7 @@ body.dark-theme .audio-upload input[type="file"] {
     min-height: auto;
   }
 }
+
 .lyrics-snippet {
   font-size: 15px;
   line-height: 1.6;
@@ -443,4 +451,3 @@ body.dark-theme .audio-upload input[type="file"] {
   max-height: 400px;
   overflow-y: auto;
 }
-   
