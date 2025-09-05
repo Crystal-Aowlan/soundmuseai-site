@@ -301,6 +301,32 @@ body.dark-theme .audio-upload input[type="file"] {
   .audio-upload input[type="file"] {
     font-size: 13px;
   }
+   /* 💻 Responsive: Tablet Landscape (e.g. 1024px) */
+@media (max-width: 1024px) {
+  body {
+    overflow-y: auto !important;
+  }
+
+  .main-content {
+    max-height: none !important;
+    overflow-y: auto;
+    padding-bottom: 120px; /* space for audio bar */
+  }
+
+  .left-panel,
+  .center-panel,
+  .right-panel {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .audio-upload {
+    margin-bottom: 80px; /* lift upload box */
+  }
+
+  .toolbar button:last-child {
+    margin-bottom: 100px; /* move ⋯ above audio bar */
+  }
 }
 
 /* === RIGHT PANEL === */
