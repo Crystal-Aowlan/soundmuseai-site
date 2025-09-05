@@ -14,7 +14,7 @@
   </div>
 
   <!-- Main App Container -->
-  <div id="app" style="display: none;">
+  <div id="app" class="app-container" style="display: none;">
     <!-- Toolbar / Sidebar -->
     <div class="toolbar">
       <a href="profile.html" class="sidebar-user" title="User Profile">
@@ -34,7 +34,7 @@
     <!-- Main Panels -->
     <div class="main-content">
       <!-- LEFT PANEL -->
-      <div class="left-panel">
+      <div class="left-panel" data-panel="left">
         <div class="chat-box">
           <h3>SoundMuse AI Chat</h3>
           <iframe id="gpt-embed" src="https://chat.openai.com/g/g-68ac96ee9cf081919a38ac6703ac70745-soundmuseai" width="100%" height="500" frameborder="0"></iframe>
@@ -48,7 +48,7 @@
       </div>
 
       <!-- CENTER PANEL -->
-      <div class="center-panel">
+      <div class="center-panel" data-panel="center">
         <div class="spectrogram-box">
           <img src="spectrograph-mock-up.png" alt="Spectrograph placeholder" style="max-width:100%; height:auto;" />
         </div>
@@ -57,19 +57,18 @@
         </div>
         <div class="upload-controls">
           <label for="ratio">Image Ratio:</label>
-          <select id="ratio">
+          <select id="ratio" tabindex="0">
             <option value="1:1">1:1 (Square)</option>
             <option value="3:2">3:2</option>
             <option value="2:3">2:3</option>
             <option value="4:3">4:3</option>
             <option value="16:9">16:9</option>
           </select>
-          <!-- Removed audio-upload from here -->
         </div>
       </div>
 
       <!-- RIGHT PANEL -->
-      <div class="right-panel">
+      <div class="right-panel" data-panel="right">
         <div class="lyrics-snippet">
           <p><strong>[Verse 1: The Spark of Connection]</strong><br>
           We started as echoes, whispers in the stream,<br>
@@ -90,36 +89,37 @@
         </audio>
       </div>
     </div>
+  </div>
 
-    <!-- Splash Logic -->
-    <script>
-      window.addEventListener('load', () => {
-        const splash = document.getElementById('splash');
-        splash.style.opacity = '0';
-        setTimeout(() => splash.style.display = 'none', 1000);
-      });
+  <!-- Splash Logic -->
+  <script>
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      splash.style.opacity = '0';
+      setTimeout(() => splash.style.display = 'none', 1000);
+    });
 
+    setTimeout(() => {
+      document.getElementById("splash").style.opacity = 0;
       setTimeout(() => {
-        document.getElementById("splash").style.opacity = 0;
-        setTimeout(() => {
-          document.getElementById("splash").style.display = "none";
-          document.getElementById("app").style.display = "flex";
-        }, 1000);
-      }, 4500); // Extended splash screen time to 4.5s
-    </script>
+        document.getElementById("splash").style.display = "none";
+        document.getElementById("app").style.display = "flex";
+      }, 1000);
+    }, 4500); // Extended splash screen time to 4.5s
+  </script>
 
-    <!-- Theme Toggle -->
-    <script>
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-      if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-theme');
-      }
-      themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        const theme = body.classList.contains('dark-theme') ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-      });
-    </script>
-  </body>
+  <!-- Theme Toggle -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-theme');
+    }
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      const theme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
 </html>
