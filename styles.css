@@ -301,7 +301,7 @@ body.dark-theme .audio-upload input[type="file"] {
   .audio-upload input[type="file"] {
     font-size: 13px;
   }
-   /* 💻 Responsive: Tablet Landscape (e.g. 1024px) */
+  /* === Responsive: Tablet Landscape (e.g. 1024px) === */
 @media (max-width: 1024px) {
   body {
     overflow-y: auto !important;
@@ -325,7 +325,36 @@ body.dark-theme .audio-upload input[type="file"] {
   }
 
   .toolbar button:last-child {
-    margin-bottom: 100px; /* move ⋯ above audio bar */
+    margin-bottom: 100px; /* move ... above audio bar */
+  }
+
+  /* FIX: Prevent audio bar from jumping to top */
+  audio {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: 90%;
+    max-width: 600px;
+  }
+
+  /* FIX: Ensure image ratio selector is always visible */
+  .image-controls {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 8px;
+  }
+
+  /* FIX: Lyrics panel width restore */
+  .right-panel {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  /* FIX: Allow GPT chat panel to show in portrait */
+  .left-panel {
+    display: block !important;
   }
 }
 
