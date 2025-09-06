@@ -133,6 +133,23 @@ body.dark-theme .toolbar button:hover {
   transform: scale(1.2);
 }
 
+/* Make linked icons behave like the old buttons */
+.toolbar a {
+  margin: 10px 0;
+}
+
+.toolbar img.icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease;
+}
+
+.toolbar img.icon:hover {
+  transform: scale(1.2);
+}
+
+}
+
 /* === Sidebar User Profile === */
 .sidebar-user {
   display: flex;
