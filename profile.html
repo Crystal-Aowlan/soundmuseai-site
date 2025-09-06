@@ -1,71 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Profile – SoundMuseAI</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header>
-<h1>SoundMuseAI – Profile</h1>
-<nav>
-<a href="index.html">Home</a>
-<a href="uploads.html">My Uploads</a>
-<a href="search.html">Search</a>
-<a href="saved-chats.html">Saved Chats</a>
-<a href="saved-lyrics.html">Saved Lyrics</a>
-<a href="account.html">Account</a>
-</nav>
-</header>
-
-
-<main class="profile-container">
-<section class="profile-info">
-<div class="profile-image">
-<img src="assets/placeholder.jpg" alt="User Profile Picture">
-</div>
-<div class="profile-details">
-<h2>My User Name Here</h2>
-<p>Email: user@email.com</p>
-<p>Tier: Free</p>
-<button>Edit Profile</button>
-</div>
-</section>
-</main>
-
-
-<footer>
-<p>&copy; 2025 SoundMuseAI. Created by Crystal Aowlan.</p>
-</footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Profile – SoundMuseAI</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>🎧 SoundMuseAI</h1>
+  <div class="toolbar">
+    <div class="profile-icon">
+      <img src="starling-head.png" alt="Profile" class="glow" />
+      <div class="app-name">SoundMuse</div>
+    </div>
     <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="profile.html" class="active">👤 Profile</a>
-      <!-- Add other navigation links here -->
+      <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" /></a>
+      <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" /></a>
+      <a href="search.html" title="Search"><img src="icons/search.png" alt="Search" /></a>
+      <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Chats" /></a>
+      <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Lyrics" /></a>
+      <a href="download.html" title="Downloads"><img src="icons/download.png" alt="Download" /></a>
+      <div class="spacer">...</div>
+      <a href="account.html" title="Account"><img src="icons/account.png" alt="Account" /></a>
+      <a href="#" title="Theme Toggle"><img src="icons/theme-toggle.png" alt="Theme" /></a>
     </nav>
-  </header>
+  </div>
+
   <main class="profile-container">
     <section class="profile-card">
-      <img src="demo-profile-bird.jpg" alt="User Profile Picture" class="profile-image">
+      <img src="starling-head.png" alt="User Profile Picture" class="profile-image" />
       <div class="profile-info">
         <h2>My User Name Here</h2>
-        <p>🎶 Independent Artist</p>
-        <p>📍 Based in a world of frequency & feathers</p>
+        <p>Email: user@email.com</p>
+        <p>Tier: Free</p>
+        <button>Edit Profile</button>
       </div>
     </section>
+
+    <section class="profile-full-image">
+      <img src="demo-profile-bird.jpg" alt="Full Starling" class="full-image" />
+      <p class="caption">Upload your profile picture here (future feature: crop to head/area).</p>
+      <input type="file" accept="image/*" />
+    </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 SoundMuseAI. Created by Crystal Aowlan.</p>
+  </footer>
 </body>
 </html>
