@@ -3,84 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search & Filter – SoundMuseAI</title>
+  <title>Music Score & Piano Roll – SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .search-panel {
-      margin-left: 90px;
-      padding: 40px;
-      color: white;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('Background-aurora.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      color: #fff;
     }
 
-    .search-box,
-    .checkboxes {
+    .content-wrapper {
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      border-radius: 16px;
     }
 
-    .search-box input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border-radius: 4px;
-      border: none;
-      font-size: 16px;
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
     }
 
-    .checkboxes label {
-      display: block;
-      margin-top: 8px;
+    p.subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #e0e0e0;
     }
 
-    .search-results {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 8px;
-      font-style: italic;
+    .mockup-image {
+      margin-bottom: 2rem;
     }
 
-    .dimmed {
-      color: #ccc;
+    .mockup-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="sidebar">
-      <img src="starling-head.png" alt="Profile Picture" class="profile-icon" />
-      <h3>SoundMuse</h3>
-      <a href="index.html"><img src="icons/home.png" alt="Home" class="icon" /></a>
-      <a href="uploads.html"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
-      <a href="search.html" class="active"><img src="icons/search.png" alt="Search" class="icon" /></a>
-      <a href="saved-chats.html"><img src="icons/chat.png" alt="Chat" class="icon" /></a>
-      <a href="saved-lyrics.html"><img src="icons/lyrics.png" alt="Lyrics" class="icon" /></a>
-      <a href="Download-UI.html"><img src="icons/download.png" alt="Download" class="icon" /></a>
-      <div style="margin: 12px 0;">...</div>
-      <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
+  <div class="content-wrapper">
+    <h1>Edit Music Score & Piano Roll</h1>
+    <p class="subtitle">Future feature – SoundMuseAI will let you generate or tweak printable music scores and editable piano rolls. For now, enjoy these mock-ups!</p>
+
+    <div class="mockup-image">
+      <h2>🎼 Music Score (Printable PDF Style)</h2>
+      <img src="music-score-mockup.png" alt="Music Score mock-up">
     </div>
 
-    <main class="search-panel">
-      <h1>🔍 Search & Filter</h1>
-      <div class="search-box">
-        <label for="keyword">Keyword Search:</label>
-        <input type="text" id="keyword" name="keyword" placeholder="e.g. demo, ambient, sunrise...">
-      </div>
-
-      <div class="checkboxes">
-        <h3>Filter by:</h3>
-        <label><input type="checkbox" name="filter" value="latest"> Latest</label>
-        <label><input type="checkbox" name="filter" value="oldest"> Oldest</label>
-        <label><input type="checkbox" name="filter" value="midi"> MIDI Only</label>
-        <label><input type="checkbox" name="filter" value="wav"> WAV Only</label>
-        <label><input type="checkbox" name="filter" value="mp3"> MP3 Only</label>
-        <label><input type="checkbox" name="filter" value="archived"> Archived Only</label>
-      </div>
-
-      <div class="search-results">
-        <p class="dimmed">Search results will appear here...</p>
-      </div>
-    </main>
+    <div class="mockup-image">
+      <h2>🎹 Piano Roll (Editable Sequence)</h2>
+      <img src="piano-roll-mockup.png" alt="Piano Roll mock-up">
+    </div>
   </div>
 </body>
 </html>
