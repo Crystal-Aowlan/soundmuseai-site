@@ -184,6 +184,37 @@ body.dark .toolbar img.icon:hover {
   text-align: center;
 }
 
+/* === User Preference Controls === */
+.user-preferences {
+  margin-top: 30px;
+}
+
+.preferences-subtext {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.master-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.master-toggle input[type="checkbox"] {
+  margin-left: 10px;
+  transform: scale(1.2);
+}
+
+.preference-group {
+  margin-bottom: 20px;
+}
+
+.preference-group label {
+  color: #eee;
+  margin-left: 4px;
+}
+
 /* === Starling Avatar Glow (dark mode only) === */
 body.dark-theme .profile-pic {
   animation: avatarGlow 2.5s ease-in-out infinite alternate;
