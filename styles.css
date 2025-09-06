@@ -511,6 +511,36 @@ body.dark-theme .audio-upload input[type="file"] {
   .panel {
     min-height: auto;
   }
+
+  body {
+    overflow-y: auto !important;
+  }
+
+  .main-content {
+    max-height: none !important;
+    overflow-y: auto;
+    padding-bottom: 140px; /* space above audio player */
+  }
+
+  .left-panel, .center-panel, .right-panel {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .audio-upload {
+    margin-bottom: 120px;
+  }
+
+  .upload-controls {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 8px;
+  }
+
+  .upload-controls select {
+    position: relative;
+    z-index: 3;
+  }
 }
 
 .lyrics-snippet {
