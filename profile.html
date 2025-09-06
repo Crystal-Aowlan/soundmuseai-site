@@ -140,6 +140,63 @@
           [Upload profile picture here – future feature only, this is just a placeholder]
         </div>
         <img src="demo-profile-bird.jpg" alt="Full Starling" class="starling-full" />
+        <!-- 🎛️ USER PREFERENCE CONTROLS START -->
+<div class="user-preferences">
+  <h2>User Preferences</h2>
+  <p class="preferences-subtext">
+    Toggle preferences ON to guide how SoundMuseAI tailors its responses. You may leave individual options as “Off” if you prefer its natural adaptive tone.
+  </p>
+
+  <!-- 🌐 MASTER TOGGLE -->
+  <label class="master-toggle">
+    <strong>Use custom preferences:</strong>
+    <input type="checkbox" id="masterToggle" checked />
+  </label>
+
+  <div id="preferenceSettings">
+    <!-- 🎵 Focus Preference -->
+    <div class="preference-group">
+      <label><strong>🎵 Focus Preference:</strong></label><br>
+      <input type="radio" name="focus" id="focus-off" checked> <label for="focus-off">Off</label><br>
+      <input type="radio" name="focus" id="focus-ai"> <label for="focus-ai">AI Music Creation</label><br>
+      <input type="radio" name="focus" id="focus-human"> <label for="focus-human">Human Artist Support</label><br>
+      <input type="radio" name="focus" id="focus-both"> <label for="focus-both">Both</label>
+    </div>
+
+    <!-- 🎓 Skill Level -->
+    <div class="preference-group">
+      <label><strong>🎓 Skill Level:</strong></label><br>
+      <input type="radio" name="skill" id="skill-off" checked> <label for="skill-off">Off</label><br>
+      <input type="radio" name="skill" id="skill-beginner"> <label for="skill-beginner">Beginner</label><br>
+      <input type="radio" name="skill" id="skill-intermediate"> <label for="skill-intermediate">Intermediate</label><br>
+      <input type="radio" name="skill" id="skill-professional"> <label for="skill-professional">Professional</label>
+    </div>
+
+    <!-- 🗣️ Tone Style -->
+    <div class="preference-group">
+      <label><strong>🗣️ Tone Style:</strong></label><br>
+      <input type="radio" name="tone" id="tone-off" checked> <label for="tone-off">Off</label><br>
+      <input type="radio" name="tone" id="tone-fun"> <label for="tone-fun">Fun & Light</label><br>
+      <input type="radio" name="tone" id="tone-neutral"> <label for="tone-neutral">Neutral</label><br>
+      <input type="radio" name="tone" id="tone-technical"> <label for="tone-technical">Technical</label>
+    </div>
+  </div>
+</div>
+<!-- 🎛️ USER PREFERENCE CONTROLS END -->
+
+<!-- 👇 JavaScript for toggling preference blocks -->
+<script>
+  const masterToggle = document.getElementById("masterToggle");
+  const preferenceSettings = document.getElementById("preferenceSettings");
+
+  masterToggle.addEventListener("change", function () {
+    preferenceSettings.style.opacity = this.checked ? "1" : "0.3";
+    preferenceSettings.querySelectorAll("input").forEach((el) => {
+      el.disabled = !this.checked;
+    });
+  });
+</script>
+
         <div class="footer">© 2025 SoundMuseAI. Created by Crystal Aowlan.</div>
       </div>
     </div>
