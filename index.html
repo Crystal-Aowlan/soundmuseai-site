@@ -32,6 +32,22 @@
   margin: 0 auto;
   border-radius: 6px;
     }
+      /* Keep content clear of the fixed music player */
+.main-content {
+  padding-bottom: 140px;  /* leave room above the bottom audio bar */
+}
+
+/* Ensure the Image Ratio dropdown renders above the bar */
+.upload-controls {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 12px;
+}
+.upload-controls select {
+  position: relative;
+  z-index: 3;
+}
+
   </style>
 </head>
 <body>
