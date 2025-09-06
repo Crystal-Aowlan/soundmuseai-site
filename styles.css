@@ -147,7 +147,15 @@ body.dark-theme .toolbar button:hover {
 .toolbar img.icon:hover {
   transform: scale(1.2);
 }
-
+/* Aurora shimmer effect for icons in dark mode only */
+body.dark .toolbar img.icon:hover {
+  transform: scale(1.2);
+  filter: 
+    drop-shadow(0 0 4px #7fffd4)      /* aqua glow */
+    drop-shadow(0 0 8px #9370DB)      /* medium purple */
+    drop-shadow(0 0 12px #00FF7F)     /* spring green */
+    drop-shadow(0 0 16px #4682B4);    /* steel blue */;
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 
 /* === Sidebar User Profile === */
