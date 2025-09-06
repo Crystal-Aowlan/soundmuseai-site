@@ -1,121 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile – SoundMuseAI</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundMuseAI – Profile</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('assets/background-aurora.png');
+      color: white;
+      background: url('background-aurora.png') no-repeat center center fixed;
       background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
     }
-    .main-container {
+
+    .container {
       display: flex;
     }
+
     .sidebar {
-      width: 80px;
-      background: linear-gradient(to bottom, #5a4d89, #457c7c);
-      color: white;
+      width: 75px;
+      background: linear-gradient(to bottom, #5b4b8a, #3d8699);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      height: 100vh;
+      min-height: 100vh;
       position: fixed;
     }
+
     .sidebar img.profile-icon {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      box-shadow: 0 0 15px 5px #ae7df0;
-      margin-bottom: 10px;
+      border: 3px solid white;
+      box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.5);
     }
-    .sidebar h2 {
-      font-size: 14px;
-      margin: 5px 0 20px;
-      color: #ddd;
-    }
-    .sidebar a {
-      text-decoration: none;
-      color: white;
-      margin: 10px 0;
-      font-size: 24px;
-    }
-    .profile-content {
-      margin-left: 100px;
-      padding: 2rem;
-      color: white;
-    }
-    .profile-card {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 600px;
-      display: flex;
-      align-items: center;
-    }
-    .profile-card img {
-      max-height: 250px;
-      border-radius: 10px;
-      margin-right: 20px;
-    }
-    .profile-details h2 {
-      margin: 0 0 10px;
-    }
-    .profile-details p {
-      margin: 5px 0;
-    }
-    .upload-placeholder {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #bbb;
-    }
-    footer {
+
+    .sidebar h3 {
+      color: #ccc;
+      font-size: 12px;
       text-align: center;
-      color: #aaa;
+      margin: 6px 0 20px;
+    }
+
+    .sidebar img.icon {
+      width: 28px;
+      height: 28px;
+      margin: 10px 0;
+    }
+
+    .main-content {
+      margin-left: 90px;
+      padding: 40px;
+      flex-grow: 1;
+    }
+
+    .profile-section {
+      max-width: 600px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .profile-section h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .profile-section h2 {
+      font-size: 22px;
+      margin: 10px 0 0;
+    }
+
+    .profile-section p {
+      font-size: 16px;
+      margin: 2px 0;
+    }
+
+    .profile-section button {
+      margin-top: 10px;
+      padding: 8px 12px;
       font-size: 14px;
+    }
+
+    .starling-full {
+      margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .placeholder-text {
+      font-size: 13px;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .footer {
       margin-top: 40px;
+      font-size: 13px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <!-- Sidebar -->
+  <div class="container">
     <div class="sidebar">
-      <img src="assets/starling-head.png" alt="Profile Picture" class="profile-icon">
-      <h2>SoundMuse</h2>
-      <a href="index.html">🏠</a>
-      <a href="uploads.html">⬆️</a>
-      <a href="search.html">🔍</a>
-      <a href="saved-chats.html">💬</a>
-      <a href="saved-lyrics.html">📝</a>
-      <a href="download.html">⬇️</a>
-      <a href="#">⋯</a>
-      <a href="#">🌓</a>
+      <img src="starling-head.png" alt="Profile Picture" class="profile-icon" />
+      <h3>SoundMuse</h3>
+      <img src="icons/home.png" alt="Home" class="icon" />
+      <img src="icons/upload.png" alt="Uploads" class="icon" />
+      <img src="icons/search.png" alt="Search" class="icon" />
+      <img src="icons/chat.png" alt="Chat" class="icon" />
+      <img src="icons/lyrics.png" alt="Lyrics" class="icon" />
+      <img src="icons/download.png" alt="Download" class="icon" />
+      <div style="margin: 12px 0;">...</div>
+      <img src="icons/theme-toggle.png" alt="Theme" class="icon" />
     </div>
-
-    <!-- Main Profile Content -->
-    <div class="profile-content">
-      <h1>SoundMuseAI – Profile</h1>
-      <div class="profile-card">
-        <img src="assets/demo-profile-bird.jpg" alt="Full Starling">
-        <div class="profile-details">
-          <h2>My User Name Here</h2>
-          <p>Email: user@email.com</p>
-          <p>Tier: Free</p>
-          <button>Edit Profile</button>
-          <p class="upload-placeholder">[Upload profile picture here – future feature only, this is just a placeholder]</p>
-        </div>
+    <div class="main-content">
+      <div class="profile-section">
+        <h1>SoundMuseAI – Profile</h1>
+        <h2>My User Name Here</h2>
+        <p>Email: user@email.com</p>
+        <p>Tier: Free</p>
+        <button>Edit Profile</button>
+        <div class="placeholder-text">[Upload profile picture here – future feature only, this is just a placeholder]</div>
+        <img src="demo-profile-bird.jpg" alt="Full Starling" class="starling-full" />
+        <div class="footer">© 2025 SoundMuseAI. Created by Crystal Aowlan.</div>
       </div>
-
-      <footer>
-        <p>&copy; 2025 SoundMuseAI. Created by Crystal Aowlan.</p>
-      </footer>
     </div>
   </div>
 </body>
