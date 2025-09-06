@@ -363,6 +363,22 @@ body.dark-theme .audio-upload input[type="file"] {
   .left-panel {
     display: block !important;
   }
+     /* Ensure toolbar is scrollable on tablets */
+  .toolbar {
+    overflow-y: auto;
+  }
+
+  /* Limit left-panel from overflowing viewport on tablets */
+  .left-panel {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* Restore image-controls if hidden due to layout shift */
+  .image-controls {
+    display: block;
+    padding-top: 10px;
+  }
 }
 
 /* === RIGHT PANEL === */
