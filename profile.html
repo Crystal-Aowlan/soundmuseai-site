@@ -44,10 +44,13 @@
       margin: 6px 0 20px;
     }
 
+    .sidebar a {
+      margin: 10px 0;
+    }
+
     .sidebar img.icon {
       width: 28px;
       height: 28px;
-      margin: 10px 0;
     }
 
     .main-content {
@@ -109,15 +112,18 @@
     <div class="sidebar">
       <img src="starling-head.png" alt="Profile Picture" class="profile-icon" />
       <h3>SoundMuse</h3>
-      <img src="icons/home.png" alt="Home" class="icon" />
-      <img src="icons/upload.png" alt="Uploads" class="icon" />
-      <img src="icons/search.png" alt="Search" class="icon" />
-      <img src="icons/chat.png" alt="Chat" class="icon" />
-      <img src="icons/lyrics.png" alt="Lyrics" class="icon" />
-      <img src="icons/download.png" alt="Download" class="icon" />
+
+      <!-- ICON LINKS ADDED BELOW -->
+      <a href="index.html"><img src="icons/home.png" alt="Home" class="icon" /></a>
+      <a href="uploads.html"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
+      <a href="search.html"><img src="icons/search.png" alt="Search" class="icon" /></a>
+      <a href="saved-chats.html"><img src="icons/chat.png" alt="Chat" class="icon" /></a>
+      <a href="saved-lyrics.html"><img src="icons/lyrics.png" alt="Lyrics" class="icon" /></a>
+      <a href="Download-UI.html"><img src="icons/download.png" alt="Download" class="icon" /></a>
       <div style="margin: 12px 0;">...</div>
-      <img src="icons/theme-toggle.png" alt="Theme" class="icon" />
+      <a href="#"><img src="icons/theme-toggle.png" alt="Theme" class="icon" /></a>
     </div>
+
     <div class="main-content">
       <div class="profile-section">
         <h1>SoundMuseAI – Profile</h1>
@@ -125,7 +131,9 @@
         <p>Email: user@email.com</p>
         <p>Tier: Free</p>
         <button>Edit Profile</button>
-        <div class="placeholder-text">[Upload profile picture here – future feature only, this is just a placeholder]</div>
+        <div class="placeholder-text">
+          [Upload profile picture here – future feature only, this is just a placeholder]
+        </div>
         <img src="demo-profile-bird.jpg" alt="Full Starling" class="starling-full" />
         <div class="footer">© 2025 SoundMuseAI. Created by Crystal Aowlan.</div>
       </div>
