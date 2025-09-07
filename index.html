@@ -86,15 +86,36 @@
       <!-- LEFT PANEL -->
      <div class="left-panel">
        <div class="chat-box">
-        <h3>SoundMuse AI Chat</h3>
-         <button onclick="window.open('https://chat.openai.com/g/g-68ac96ee9cf081919a38ac6703ac70745-soundmuseai', '_blank', 'width=800,height=600')">
-         🧠 Open SoundMuseAI in ChatGPT
-         </button>
-        <p style="font-size: 0.85rem; color: #ccc; margin-top: 6px;">
-       (Opens in a new window for full compatibility, especially in Firefox)
-      </p>
-     </div>
+  <h3>SoundMuse AI Chat</h3>
+  <button onclick="openSoundMuse()" title="Open SoundMuseAI in a floating window">
+    Open SoundMuseAI in ChatGPT
+  </button>
+  <p style="font-size: 0.85rem; color: #ccc; margin-top: 6px;">
+    (Opens in a floating window; you may need to allow pop-ups for this site.)
+  </p>
 
+  <script>
+    function openSoundMuse() {
+      const url = "https://chat.openai.com/g/g-68ac96ee9cf081919a38ac6703ac70745-soundmuseai"; // <-- exact ID + slug
+      const w = 900, h = 700;
+      const left = Math.round((screen.width - w) / 2);
+      const top = Math.round((screen.height - h) / 2);
+      const win = window.open(
+        url,
+        "SoundMuseAI",
+        `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`
+      );
+      if (win) win.focus();
+    }
+  </script>
+
+  <p style="font-size: 0.8rem; color:#ccc; margin-top:4px;">
+    <a href="https://chat.openai.com/g/g-68ac96ee9cf081919a38ac6703ac70745-soundmuseai"
+       target="_blank" rel="noopener">
+       Open in a new tab instead
+    </a>
+  </p>
+</div> <!-- ✅ closes .chat-box -->
 
         <!-- Moved here -->
         <div class="audio-upload">
