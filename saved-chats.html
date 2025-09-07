@@ -14,25 +14,23 @@
       background-attachment: fixed;
       color: #fff;
       margin: 0;
-      padding: 2rem;
     }
-    .toolbar {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 99;
+
+    /* Reserve room for the fixed toolbar so content isn't hidden */
+    main.page {
+      margin-left: 110px;        /* ~90px toolbar + breathing space */
+      padding: 2rem 2rem 3rem;   /* bottom pad for comfort */
     }
-    .icon {
-      width: 32px;
-      height: 32px;
-      margin-bottom: 1rem;
-      transition: transform 0.2s;
+
+    /* Match homepage icon behavior (no global overrides) */
+    .toolbar a { margin: 10px 0; }
+    .toolbar img.icon {
+      width: 28px; height: 28px;
+      transition: transform 0.2s ease;
     }
-    .icon:hover {
-      transform: scale(1.1);
-    }
+    .toolbar img.icon:hover { transform: scale(1.2); }
+
+    /* Cards */
     .chat-entry, .file-entry {
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
@@ -40,87 +38,97 @@
       margin-bottom: 1rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
+
     .chat-header, .file-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       flex-wrap: wrap;
     }
+
     .chat-title, .file-title {
-      flex-grow: 1;
-      margin-right: 1rem;
+      flex: 1;
       font-weight: bold;
     }
+
     .chat-date {
       font-size: 0.9rem;
       color: #ccc;
+      white-space: nowrap;
     }
-    .chat-actions button, .file-actions button {
+
+    .actions button {
       margin-left: 0.5rem;
       background: #333;
       border: none;
       color: white;
-      padding: 0.4rem 0.8rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 0.9rem;
     }
-    .chat-actions button:hover, .file-actions button:hover {
-      background: #555;
-    }
-    .dropdown {
-      position: absolute;
-      background: #222;
-      padding: 0.5rem;
-      border-radius: 6px;
-      display: none;
-    }
-    .hidden {
-      display: none;
-    }
+    .actions button:hover { background: #555; }
+
     .sort-options {
-      margin: 1.5rem 0;
+      margin: 1.25rem 0 1.5rem;
       display: flex;
       gap: 2rem;
       align-items: center;
+      flex-wrap: wrap;
     }
     .sort-options label {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    h2 {
-      margin-top: 2rem;
+
+    h1 { margin: 0 0 0.75rem; }
+    h2 { margin: 1.75rem 0 0.75rem; }
+
+    @media (max-width: 1024px) {
+      main.page { margin-left: 110px; padding-bottom: 140px; } /* keep clear of music bar */
     }
   </style>
 </head>
 <body>
-  <!-- Toolbar with Icon Images -->
+
+  <!-- ✅ Shared toolbar (matches homepage) -->
   <div class="toolbar">
+    <a href="profile.html" class="sidebar-user" title="User Profile">
+      <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <span class="sidebar-username">SoundMuse</span>
+    </a>
+
     <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
     <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
     <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
     <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
     <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
-    <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+    <a href="Download-UI.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+
     <div style="margin: 12px 0;">...</div>
-    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌓</button>
+    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
   </div>
 
-  <main>
+  <!-- 📚 Content -->
+  <main class="page">
     <h1>💬 Saved Chat Sessions</h1>
     <p><strong>Suggestion:</strong> Use a fresh chat instance for each new project. If working on related ideas, you can continue within the same chat.<br/>
-    <em>Hint:</em> If the conversation gets long, request a summary of chat/content/progress to carry forward into a new chat instance to maintain continuity.</p>
+    <em>Hint:</em> If a chat gets long, request a summary to carry into a new chat instance to maintain continuity.</p>
 
+    <!-- Pinned -->
     <h2>Pinned Chats (up to 5)</h2>
+
     <div class="chat-entry">
       <div class="chat-header">
         <span class="chat-title">🎼 Serengeti Wildlife Music Projects</span>
         <span class="chat-date">Saved: 6 Sep 2025</span>
-        <div class="chat-actions">
+        <div class="actions">
           <button>📍 Unpin</button>
+          <button>👀 View</button>
           <button>📁 Archive</button>
           <button>🗑️ Delete</button>
-          <button>🔁 Reopen</button>
         </div>
       </div>
     </div>
@@ -129,16 +137,17 @@
       <div class="chat-header">
         <span class="chat-title">🎧 Song wording assistance after Grandmother's passing</span>
         <span class="chat-date">Saved: 5 Sep 2025</span>
-        <div class="chat-actions">
+        <div class="actions">
           <button>📍 Unpin</button>
+          <button>👀 View</button>
           <button>📁 Archive</button>
           <button>🗑️ Delete</button>
-          <button>🔁 Reopen</button>
         </div>
       </div>
     </div>
 
-    <h2>All Other Chats</h2>
+    <!-- Others -->
+    <h2>Other Chats</h2>
     <div class="sort-options">
       <label><input type="radio" name="sort-chat" checked /> Newest First</label>
       <label><input type="radio" name="sort-chat" /> Oldest First</label>
@@ -148,10 +157,11 @@
     <div class="file-entry">
       <div class="file-header">
         <span class="file-title">🎶 Professional Music Language in metaphors</span>
-        <div class="file-actions">
-          <button>View</button>
-          <button>Archive</button>
-          <button>Delete</button>
+        <div class="actions">
+          <button>📌 Pin</button>
+          <button>👀 View</button>
+          <button>📁 Archive</button>
+          <button>🗑️ Delete</button>
         </div>
       </div>
     </div>
@@ -159,10 +169,11 @@
     <div class="file-entry">
       <div class="file-header">
         <span class="file-title">🎷 Saxophone score for Classic Jazz piece</span>
-        <div class="file-actions">
-          <button>View</button>
-          <button>Archive</button>
-          <button>Delete</button>
+        <div class="actions">
+          <button>📌 Pin</button>
+          <button>👀 View</button>
+          <button>📁 Archive</button>
+          <button>🗑️ Delete</button>
         </div>
       </div>
     </div>
@@ -170,15 +181,31 @@
     <div class="file-entry">
       <div class="file-header">
         <span class="file-title">🎻 Humorous Baroque – Love Song Snoring Edition</span>
-        <div class="file-actions">
-          <button>View</button>
-          <button>Archive</button>
-          <button>Delete</button>
+        <div class="actions">
+          <button>📌 Pin</button>
+          <button>👀 View</button>
+          <button>📁 Archive</button>
+          <button>🗑️ Delete</button>
         </div>
       </div>
     </div>
 
-    <p style="margin-top: 2rem; font-style: italic; color: #ccc;">These demo chat titles reflect a few of the things SoundMuseAI could help with.</p>
+    <p style="margin-top: 2rem; font-style: italic; color: #ccc;">
+      These demo chat titles reflect a few of the things SoundMuseAI could help with.
+    </p>
   </main>
+
+  <!-- 🔦 Theme toggle (same as homepage) -->
+  <script>
+    (function() {
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+      const t = document.getElementById('theme-toggle');
+      if (t) t.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+    })();
+  </script>
 </body>
 </html>
