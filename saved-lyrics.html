@@ -5,149 +5,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saved Lyrics – SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .iconbar {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 60px;
+      background-color: #111;
+      align-items: center;
+      padding-top: 10px;
+    }
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin: 15px 0;
+      filter: brightness(1.2);
+    }
+    .content {
+      margin-left: 70px;
+      padding: 2rem;
+    }
+    .lyric-entry {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-actions button {
+      margin-left: 8px;
+      background: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .dropdown {
+      background: #222;
+      border-radius: 6px;
+      position: absolute;
+      margin-top: 4px;
+      z-index: 2;
+    }
+    .dropdown.hidden {
+      display: none;
+    }
+    .dropdown ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dropdown li button {
+      background: none;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      width: 100%;
+      text-align: left;
+    }
+    .sort-options {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- ✅ Icon images with links -->
-  <nav class="toolbar">
+  <div class="iconbar">
     <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
     <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
     <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
     <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
     <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
     <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
-    
-    <!-- “...” placeholder unchanged -->
     <div style="margin: 12px 0;">...</div>
-    
-    <!-- Keep theme toggle exactly as-is -->
     <button id="theme-toggle" title="Toggle Light/Dark Mode">🌓</button>
-  </nav>
+  </div>
 
-  <main style="margin-left: 80px; padding: 2rem;">
-    <h2>📝 Your Saved Lyrics & Instructions</h2>
-    <p>Reopen, edit, pin or download your musical ideas with ease.</p>
+  <div class="content">
+    <h2>📝 Your Saved Lyrics & Musical Ideas</h2>
+    <p>Pin up to 5 files you're actively working on. Sort the rest below.</p>
 
-    <!-- 🔘 Radio buttons for sort options -->
-    <div style="margin: 1rem 0;">
-      <label><input type="radio" name="sortOption" checked> Sort by File Type</label>
-      <label style="margin-left: 1rem;"><input type="radio" name="sortOption"> Sort Alphabetically</label>
-    </div>
+    <section>
+      <h3>📌 Pinned Lyrics (Max 5)</h3>
 
-    <!-- 🎵 Mock file list -->
-    <div class="file-entry">
-      <strong>🎵 demo-neverknowuntilyoutry.wav</strong>
-      <div class="file-actions">
-        <button>View</button>
-        <button>Archive</button>
-        <button>Delete</button>
+      <div class="lyric-entry">
+        <div class="chat-header">
+          <span>🎶 We-Build-Together.mp3</span>
+          <div class="chat-actions">
+            <button class="pin">📌</button>
+            <button class="menu">⋮</button>
+            <div class="dropdown hidden">
+              <ul>
+                <li><button>📍 Unpin</button></li>
+                <li><button>📁 Archive</button></li>
+                <li><button>🗑️ Delete</button></li>
+                <li><button>⬇️ Download</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <pre class="lyric-snippet">[Intro]
+[Act 1 – Anthem Rise] 🎶 Harmonic shimmer with marching tempo...
+</pre>
       </div>
-    </div>
+    </section>
 
-    <div class="file-entry">
-      <strong>🎶 mysterymuse.MP3</strong>
-      <div class="file-actions">
-        <button>View</button>
-        <button>Archive</button>
-        <button>Delete</button>
+    <section>
+      <h3>📂 All Other Lyrics</h3>
+      <div class="sort-options">
+        <label><input type="radio" name="sort" checked /> Sort by File Type</label>
+        <label><input type="radio" name="sort" /> Sort A–Z</label>
       </div>
-    </div>
 
-    <div class="file-entry">
-      <strong>🎶 We-Build-Together.mp3</strong>
-      <div class="file-actions">
-        <button>View</button>
-        <button>Archive</button>
-        <button>Delete</button>
+      <div class="lyric-entry">
+        <div class="chat-header">
+          <span>🎼 wentforgold.midi</span>
+          <div class="chat-actions">
+            <button>👁️ View</button>
+            <button>📁 Archive</button>
+            <button>🗑️ Delete</button>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="file-entry">
-      <strong>🎼 wentforgold.midi</strong>
-      <div class="file-actions">
-        <button>View</button>
-        <button>Archive</button>
-        <button>Delete</button>
+      <div class="lyric-entry">
+        <div class="chat-header">
+          <span>🎵 demo-neverknowuntilyoutry.wav</span>
+          <div class="chat-actions">
+            <button>👁️ View</button>
+            <button>📁 Archive</button>
+            <button>🗑️ Delete</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </main>
 
-  <style>
-    body {
-      background-image: url('Background-aurora.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-    }
+      <div class="lyric-entry">
+        <div class="chat-header">
+          <span>🎶 mysterymuse.MP3</span>
+          <div class="chat-actions">
+            <button>👁️ View</button>
+            <button>📁 Archive</button>
+            <button>🗑️ Delete</button>
+          </div>
+        </div>
+      </div>
 
-    .toolbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 64px;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 100;
-    }
-
-    .toolbar .icon {
-      width: 32px;
-      height: 32px;
-      margin: 0.75rem 0;
-      transition: transform 0.2s ease;
-    }
-
-    .toolbar .icon:hover {
-      transform: scale(1.2);
-    }
-
-    .file-entry {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .file-actions button {
-      margin-left: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: #ddd;
-      color: #333;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .file-actions button:hover {
-      background-color: #bbb;
-    }
-  </style>
+    </section>
+  </div>
 
   <script>
-    // You can later hook sorting functions here
-    const radioButtons = document.querySelectorAll('input[name="sortOption"]');
-    radioButtons.forEach(radio => {
-      radio.addEventListener('change', () => {
-        alert('Sorting not yet implemented – just a mockup for now!');
+    const menus = document.querySelectorAll('.menu');
+    menus.forEach(menu => {
+      menu.addEventListener('click', () => {
+        const dropdown = menu.nextElementSibling;
+        dropdown.classList.toggle('hidden');
       });
-    });
-
-    // Optional: Theme toggle logic (preserving user’s toggle)
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
     });
   </script>
 </body>
