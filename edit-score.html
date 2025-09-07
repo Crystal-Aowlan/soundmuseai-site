@@ -17,11 +17,13 @@
       color: #fff;
     }
 
+    /* Reserve space for the fixed toolbar (same feel as homepage) */
     .content-wrapper {
       padding: 3rem 2rem;
       text-align: center;
       max-width: 1000px;
-      margin: auto;
+      margin: 0 auto;
+      margin-left: 110px; /* <- room for 90px toolbar + breathing space */
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 16px;
     }
@@ -30,42 +32,52 @@
       font-size: 2.4rem;
       margin-bottom: 0.5rem;
     }
-
     p.subtitle {
       font-size: 1.1rem;
       margin-bottom: 2rem;
       color: #e0e0e0;
     }
 
-    .mockup-image {
-      margin-bottom: 2rem;
-    }
-
+    .mockup-image { margin-bottom: 2rem; }
     .mockup-image img {
       max-width: 100%;
       height: auto;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
+
+    /* Make linked icons behave like your homepage toolbar */
+    .toolbar a { margin: 10px 0; }
+    .toolbar img.icon {
+      width: 28px; height: 28px;
+      transition: transform 0.2s ease;
+    }
+    .toolbar img.icon:hover { transform: scale(1.2); }
+
+    /* Keep layout comfy on tablets */
+    @media (max-width: 1024px) {
+      .content-wrapper { margin-left: 110px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Sidebar toolbar block -->
-  <div class="sidebar">
-    <!-- ✅ Icon images with links -->
+  <!-- ✅ Shared toolbar (matches homepage) -->
+  <div class="toolbar">
+    <a href="profile.html" class="sidebar-user" title="User Profile">
+      <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <span class="sidebar-username">SoundMuse</span>
+    </a>
+
     <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
     <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
     <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
     <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
     <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
-    <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+    <a href="Download-UI.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
 
-    <!-- “...” placeholder unchanged -->
     <div style="margin: 12px 0;">...</div>
-
-    <!-- Keep theme toggle exactly as-is -->
-    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌓</button>
+    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
   </div>
 
   <!-- 🎼 Main content -->
@@ -83,5 +95,22 @@
       <img src="piano-roll-mockup.png" alt="Piano Roll mock-up">
     </div>
   </div>
+
+  <!-- 🔦 Theme toggle (same logic as homepage) -->
+  <script>
+    (function() {
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-theme');
+      }
+      const t = document.getElementById('theme-toggle');
+      if (t) {
+        t.addEventListener('click', () => {
+          body.classList.toggle('dark-theme');
+          localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
