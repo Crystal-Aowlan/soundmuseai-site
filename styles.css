@@ -148,7 +148,7 @@ body.dark-theme .toolbar button:hover {
   transform: scale(1.2);
 }
 /* Aurora shimmer effect for icons in dark mode only */
-body.dark .toolbar img.icon:hover {
+body.dark-theme .toolbar img.icon:hover {
   transform: scale(1.2);
   filter: 
     drop-shadow(0 0 4px #7fffd4)      /* aqua glow */
