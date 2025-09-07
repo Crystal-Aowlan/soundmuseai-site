@@ -3,99 +3,182 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Saved Chats - SoundMuseAI</title>
+  <title>Saved Chats – SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('Background-aurora.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+      margin: 0;
+      padding: 2rem;
+    }
+    .toolbar {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 99;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 1rem;
+      transition: transform 0.2s;
+    }
+    .icon:hover {
+      transform: scale(1.1);
+    }
+    .chat-entry, .file-entry {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .chat-header, .file-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .chat-title, .file-title {
+      flex-grow: 1;
+      margin-right: 1rem;
+      font-weight: bold;
+    }
+    .chat-date {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .chat-actions button, .file-actions button {
+      margin-left: 0.5rem;
+      background: #333;
+      border: none;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .chat-actions button:hover, .file-actions button:hover {
+      background: #555;
+    }
+    .dropdown {
+      position: absolute;
+      background: #222;
+      padding: 0.5rem;
+      border-radius: 6px;
+      display: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .sort-options {
+      margin: 1.5rem 0;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .sort-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-
-  <!-- ✅ Sidebar toolbar block -->
-  <div class="sidebar">
+  <!-- Toolbar with Icon Images -->
+  <div class="toolbar">
     <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
     <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
     <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
     <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
     <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
     <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
-
     <div style="margin: 12px 0;">...</div>
-
     <button id="theme-toggle" title="Toggle Light/Dark Mode">🌓</button>
   </div>
 
-  <!-- 💬 Main Content -->
-  <main style="margin-left: 80px; padding: 2rem;">
-    <section>
-      <h2>💬 Your Saved Chats</h2>
-      <p>You can pin, archive, delete or reopen saved SoundMuseAI chats.</p>
+  <main>
+    <h1>💬 Saved Chat Sessions</h1>
+    <p><strong>Suggestion:</strong> Use a fresh chat instance for each new project. If working on related ideas, you can continue within the same chat.<br/>
+    <em>Hint:</em> If the conversation gets long, request a summary of chat/content/progress to carry forward into a new chat instance to maintain continuity.</p>
 
-      <div class="chat-entry">
-        <div class="chat-header">
-          <input type="text" value="Idea Session – Lyric Builder" class="chat-title" />
-          <span class="chat-date">Saved: 29 Aug 2025</span>
-          <div class="chat-actions">
-            <button class="pin">📌</button>
-            <button class="menu">⋮</button>
-            <div class="dropdown hidden">
-              <ul>
-                <li><button>📍 Pin to Top</button></li>
-                <li><button>📁 Archive</button></li>
-                <li><button>🗑️ Delete</button></li>
-                <li><button>🔁 Reopen</button></li>
-              </ul>
-            </div>
-          </div>
+    <h2>Pinned Chats (up to 5)</h2>
+    <div class="chat-entry">
+      <div class="chat-header">
+        <span class="chat-title">🎼 Serengeti Wildlife Music Projects</span>
+        <span class="chat-date">Saved: 6 Sep 2025</span>
+        <div class="chat-actions">
+          <button>📍 Unpin</button>
+          <button>📁 Archive</button>
+          <button>🗑️ Delete</button>
+          <button>🔁 Reopen</button>
         </div>
       </div>
+    </div>
 
-      <div class="chat-entry">
-        <div class="chat-header">
-          <input type="text" value="Folder Concept Planning" class="chat-title" />
-          <span class="chat-date">Saved: 28 Aug 2025</span>
-          <div class="chat-actions">
-            <button class="pin">📌</button>
-            <button class="menu">⋮</button>
-            <div class="dropdown hidden">
-              <ul>
-                <li><button>📍 Pin to Top</button></li>
-                <li><button>📁 Archive</button></li>
-                <li><button>🗑️ Delete</button></li>
-                <li><button>🔁 Reopen</button></li>
-              </ul>
-            </div>
-          </div>
+    <div class="chat-entry">
+      <div class="chat-header">
+        <span class="chat-title">🎧 Song wording assistance after Grandmother's passing</span>
+        <span class="chat-date">Saved: 5 Sep 2025</span>
+        <div class="chat-actions">
+          <button>📍 Unpin</button>
+          <button>📁 Archive</button>
+          <button>🗑️ Delete</button>
+          <button>🔁 Reopen</button>
         </div>
       </div>
+    </div>
 
-      <div class="chat-entry">
-        <div class="chat-header">
-          <input type="text" value="Gamma Wave Discussion" class="chat-title" />
-          <span class="chat-date">Saved: 25 Aug 2025</span>
-          <div class="chat-actions">
-            <button class="pin">📌</button>
-            <button class="menu">⋮</button>
-            <div class="dropdown hidden">
-              <ul>
-                <li><button>📍 Pin to Top</button></li>
-                <li><button>📁 Archive</button></li>
-                <li><button>🗑️ Delete</button></li>
-                <li><button>🔁 Reopen</button></li>
-              </ul>
-            </div>
-          </div>
+    <h2>All Other Chats</h2>
+    <div class="sort-options">
+      <label><input type="radio" name="sort-chat" checked /> Newest First</label>
+      <label><input type="radio" name="sort-chat" /> Oldest First</label>
+      <label><input type="radio" name="sort-chat" /> A–Z</label>
+    </div>
+
+    <div class="file-entry">
+      <div class="file-header">
+        <span class="file-title">🎶 Professional Music Language in metaphors</span>
+        <div class="file-actions">
+          <button>View</button>
+          <button>Archive</button>
+          <button>Delete</button>
         </div>
       </div>
+    </div>
 
-    </section>
+    <div class="file-entry">
+      <div class="file-header">
+        <span class="file-title">🎷 Saxophone score for Classic Jazz piece</span>
+        <div class="file-actions">
+          <button>View</button>
+          <button>Archive</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="file-entry">
+      <div class="file-header">
+        <span class="file-title">🎻 Humorous Baroque – Love Song Snoring Edition</span>
+        <div class="file-actions">
+          <button>View</button>
+          <button>Archive</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 2rem; font-style: italic; color: #ccc;">These demo chat titles reflect a few of the things SoundMuseAI could help with.</p>
   </main>
-
-  <script>
-    const menus = document.querySelectorAll('.menu');
-    menus.forEach(menu => {
-      menu.addEventListener('click', () => {
-        const dropdown = menu.nextElementSibling;
-        dropdown.classList.toggle('hidden');
-      });
-    });
-  </script>
 </body>
 </html>
