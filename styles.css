@@ -198,6 +198,15 @@ body.dark-theme .sidebar-username:hover {
     0 0 12px rgba(200, 255, 255, 0.3);
   cursor: default;
 }
+/* Small timestamp label used on Saved pages */
+.chat-date {
+  font-size: 0.9rem;
+  color: #ccc;
+  white-space: nowrap;
+}
+body.dark-theme .chat-date {
+  color: #cfd3ff;
+}
 
 /* === User Preference Controls === */
 .user-preferences {
