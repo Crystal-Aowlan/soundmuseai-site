@@ -44,6 +44,13 @@
       margin: 6px 0 20px;
     }
 
+    .sidebar h3:hover {
+      color: #fff;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.8),
+                   0 0 12px rgba(173, 216, 230, 0.6);
+      cursor: default;
+    }
+
     .sidebar a {
       margin: 10px 0;
     }
@@ -88,15 +95,15 @@
     }
 
     .starling-full {
-  margin-top: 20px;
-  max-width: 80%;    /* shrink from full width */
-  max-height: 400px; /* cap height */
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto; /* center it */
-  object-fit: contain;
+      margin-top: 20px;
+      max-width: 80%;
+      max-height: 400px;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: contain;
     }
 
     .placeholder-text {
@@ -110,6 +117,20 @@
       font-size: 13px;
       color: #ccc;
     }
+
+    .preferences-subtext {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: -4px;
+      margin-bottom: 12px;
+    }
+
+    .master-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -117,8 +138,6 @@
     <div class="sidebar">
       <img src="starling-head.png" alt="Profile Picture" class="profile-icon" />
       <h3>SoundMuse</h3>
-
-      <!-- ICON LINKS ADDED BELOW -->
       <a href="index.html"><img src="icons/home.png" alt="Home" class="icon" /></a>
       <a href="uploads.html"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
       <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
@@ -126,7 +145,7 @@
       <a href="saved-lyrics.html"><img src="icons/lyrics.png" alt="Lyrics" class="icon" /></a>
       <a href="Download-UI.html"><img src="icons/download.png" alt="Download" class="icon" /></a>
       <div style="margin: 12px 0;">...</div>
-     <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
+      <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
     </div>
 
     <div class="main-content">
@@ -140,62 +159,56 @@
           [Upload profile picture here – future feature only, this is just a placeholder]
         </div>
         <img src="demo-profile-bird.jpg" alt="Full Starling" class="starling-full" />
-        <!-- 🎛️ USER PREFERENCE CONTROLS START -->
-<div class="user-preferences">
-  <h2>User Preferences</h2>
-  <p class="preferences-subtext">
-    Toggle preferences ON to guide how SoundMuseAI tailors its responses. You may leave individual options as “Off” if you prefer its natural adaptive tone.
-  </p>
 
-  <!-- 🌐 MASTER TOGGLE -->
-  <label class="master-toggle">
-    <strong>Use custom preferences:</strong>
-    <input type="checkbox" id="masterToggle" checked />
-  </label>
+        <div class="user-preferences">
+          <h2>User Preferences</h2>
+          <p class="preferences-subtext">
+            Toggle preferences ON to guide how SoundMuseAI tailors its responses. You may leave individual options as “Off” if you prefer its natural adaptive tone.
+          </p>
 
-  <div id="preferenceSettings">
-    <!-- 🎵 Focus Preference -->
-    <div class="preference-group">
-      <label><strong>🎵 Focus Preference:</strong></label><br>
-      <input type="radio" name="focus" id="focus-off" checked> <label for="focus-off">Off</label><br>
-      <input type="radio" name="focus" id="focus-ai"> <label for="focus-ai">AI Music Creation</label><br>
-      <input type="radio" name="focus" id="focus-human"> <label for="focus-human">Human Artist Support</label><br>
-      <input type="radio" name="focus" id="focus-both"> <label for="focus-both">Both</label>
-    </div>
+          <label class="master-toggle">
+            <strong>Use custom preferences:</strong>
+            <input type="checkbox" id="masterToggle" checked />
+          </label>
 
-    <!-- 🎓 Skill Level -->
-    <div class="preference-group">
-      <label><strong>🎓 Skill Level:</strong></label><br>
-      <input type="radio" name="skill" id="skill-off" checked> <label for="skill-off">Off</label><br>
-      <input type="radio" name="skill" id="skill-beginner"> <label for="skill-beginner">Beginner</label><br>
-      <input type="radio" name="skill" id="skill-intermediate"> <label for="skill-intermediate">Intermediate</label><br>
-      <input type="radio" name="skill" id="skill-professional"> <label for="skill-professional">Professional</label>
-    </div>
+          <div id="preferenceSettings">
+            <div class="preference-group">
+              <label><strong>🎵 Focus Preference:</strong></label><br>
+              <input type="radio" name="focus" id="focus-off" checked> <label for="focus-off">Off</label><br>
+              <input type="radio" name="focus" id="focus-ai"> <label for="focus-ai">AI Music Creation</label><br>
+              <input type="radio" name="focus" id="focus-human"> <label for="focus-human">Human Artist Support</label><br>
+              <input type="radio" name="focus" id="focus-both"> <label for="focus-both">Both</label>
+            </div>
 
-    <!-- 🗣️ Tone Style -->
-    <div class="preference-group">
-      <label><strong>🗣️ Tone Style:</strong></label><br>
-      <input type="radio" name="tone" id="tone-off" checked> <label for="tone-off">Off</label><br>
-      <input type="radio" name="tone" id="tone-fun"> <label for="tone-fun">Fun & Light</label><br>
-      <input type="radio" name="tone" id="tone-neutral"> <label for="tone-neutral">Neutral</label><br>
-      <input type="radio" name="tone" id="tone-technical"> <label for="tone-technical">Technical</label>
-    </div>
-  </div>
-</div>
-<!-- 🎛️ USER PREFERENCE CONTROLS END -->
+            <div class="preference-group">
+              <label><strong>🎓 Skill Level:</strong></label><br>
+              <input type="radio" name="skill" id="skill-off" checked> <label for="skill-off">Off</label><br>
+              <input type="radio" name="skill" id="skill-beginner"> <label for="skill-beginner">Beginner</label><br>
+              <input type="radio" name="skill" id="skill-intermediate"> <label for="skill-intermediate">Intermediate</label><br>
+              <input type="radio" name="skill" id="skill-professional"> <label for="skill-professional">Professional</label>
+            </div>
 
-<!-- 👇 JavaScript for toggling preference blocks -->
-<script>
-  const masterToggle = document.getElementById("masterToggle");
-  const preferenceSettings = document.getElementById("preferenceSettings");
+            <div class="preference-group">
+              <label><strong>🗣️ Tone Style:</strong></label><br>
+              <input type="radio" name="tone" id="tone-off" checked> <label for="tone-off">Off</label><br>
+              <input type="radio" name="tone" id="tone-fun"> <label for="tone-fun">Fun & Light</label><br>
+              <input type="radio" name="tone" id="tone-neutral"> <label for="tone-neutral">Neutral</label><br>
+              <input type="radio" name="tone" id="tone-technical"> <label for="tone-technical">Technical</label>
+            </div>
+          </div>
+        </div>
 
-  masterToggle.addEventListener("change", function () {
-    preferenceSettings.style.opacity = this.checked ? "1" : "0.3";
-    preferenceSettings.querySelectorAll("input").forEach((el) => {
-      el.disabled = !this.checked;
-    });
-  });
-</script>
+        <script>
+          const masterToggle = document.getElementById("masterToggle");
+          const preferenceSettings = document.getElementById("preferenceSettings");
+
+          masterToggle.addEventListener("change", function () {
+            preferenceSettings.style.opacity = this.checked ? "1" : "0.3";
+            preferenceSettings.querySelectorAll("input").forEach((el) => {
+              el.disabled = !this.checked;
+            });
+          });
+        </script>
 
         <div class="footer">© 2025 SoundMuseAI. Created by Crystal Aowlan.</div>
       </div>
@@ -203,3 +216,4 @@
   </div>
 </body>
 </html>
+
