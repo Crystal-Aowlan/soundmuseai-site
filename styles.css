@@ -260,6 +260,7 @@ body.dark-theme .profile-pic {
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  padding-bottom: 120px; /* PATCH: ensures content above audio bar */
 }
 
 /* === LEFT PANEL === */
@@ -315,7 +316,11 @@ body.dark-theme .profile-pic {
   align-items: center;
   gap: 10px;
   padding-top: 5px;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 8px;
 }
+
 /* === Album Art & Aspect Ratio Selector === */
 .album-container {
   position: relative;
@@ -323,6 +328,7 @@ body.dark-theme .profile-pic {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  padding-bottom: 60px; /* PATCH: prevent hidden title/ratio selector */
 }
 
 .album-art {
@@ -333,14 +339,27 @@ body.dark-theme .profile-pic {
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
 }
 
+.album-title {
+  position: relative;
+  z-index: 2; /* PATCH */
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+  color: var(--text-color, #ffffff); /* default white fallback */
+}
+
 .ratio-selector {
+  position: relative;
+  z-index: 3; /* PATCH */
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   border-radius: 6px;
   padding: 6px 12px;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border: 1px solid #888;
+  text-align: center;
 }
 
 .ratio-selector select {
@@ -426,7 +445,7 @@ body.dark-theme .audio-upload input[type="file"] {
   .main-content {
     max-height: none !important;
     overflow-y: auto;
-    padding-bottom: 120px; /* space for audio bar */
+    padding-bottom: 120px; /* PATCH: space for audio bar */
   }
 
   .left-panel,
@@ -610,44 +629,4 @@ body.dark-theme .audio-upload input[type="file"] {
   color: #222;
   max-height: 400px;
   overflow-y: auto;
-}
-/* Album Container Styling */
-.album-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  padding-bottom: 40px; /* keeps it above the music player */
-}
-
-/* Album Image */
-.album-art {
-  max-width: 80%;
-  max-height: 250px;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-/* Album Title */
-.album-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: var(--text-color, #ffffff); /* default white in dark mode */
-  text-align: center;
-}
-
-/* Ratio Selector Styling */
-.ratio-selector {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.ratio-selector select {
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 0.9rem;
 }
