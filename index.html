@@ -144,19 +144,19 @@ function openSoundMuse() {
         <div class="spectrogram-box">
           <img src="spectrograph-mock-up.png" alt="Spectrograph placeholder" style="max-width:100%; height:auto;" />
         </div>
-        <div class="image-box">
-          <img src="we-build-together.jpeg" alt="Artwork placeholder" style="max-width:100%; height:auto;" />
-        </div>
-        <div class="upload-controls">
-          <label for="ratio">Image Ratio:</label>
-          <select id="ratio">
-            <option value="1:1">1:1 (Square)</option>
-            <option value="3:2">3:2</option>
-            <option value="2:3">2:3</option>
-            <option value="4:3">4:3</option>
-            <option value="16:9">16:9</option>
-          </select>
-        </div>
+        <div class="album-container">
+  <div class="ratio-selector">
+    <label for="imageRatio">Aspect Ratio: </label>
+    <select id="imageRatio">
+      <option value="1:1">1:1 (Square)</option>
+      <option value="3:2">3:2</option>
+      <option value="2:3">2:3</option>
+      <option value="4:3">4:3</option>
+      <option value="16:9">16:9</option>
+    </select>
+  </div>
+  <img src="we-build-together.jpeg" alt="Album Art" class="album-art" />
+</div>
       </div>
 
       <!-- RIGHT PANEL -->
