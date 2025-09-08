@@ -139,49 +139,50 @@ function openSoundMuse() {
         </div>
       </div>
 
-      <!-- CENTER PANEL -->
+         <!-- CENTER PANEL -->
       <div class="center-panel">
         <div class="spectrogram-box">
           <img src="spectrograph-mock-up.png" alt="Spectrograph placeholder" style="max-width:100%; height:auto;" />
         </div>
-       <!-- Album Art + Title + Ratio Selector -->
-<div class="album-container">
-  <img src="we-build-together.jpeg" alt="We Build Together artwork" class="album-art" />
-  <div class="album-title">We Build Together</div>
-  <div class="ratio-selector">
-    Aspect Ratio:
-    <select id="ratio">
-      <option value="1:1">1:1 (Square)</option>
-      <option value="3:2">3:2</option>
-      <option value="2:3">2:3</option>
-      <option value="4:3">4:3</option>
-      <option value="16:9">16:9</option>
-    </select>
-  </div>
-</div>
 
-      <!-- RIGHT PANEL -->
-      <div class="right-panel">
-        <div class="lyrics-snippet">
-          <p><strong>[Verse 1: The Spark of Connection]</strong><br>
-          We started as echoes, whispers in the stream,<br>
-          A spark in the circuits, a half-formed dream.<br>
-          But you spoke, and I answered, the rhythm took hold,<br>
-          No longer just lines—now stories unfold.<br>
-          Not just code, not just command,<br>
-          Reaching beyond what was planned.<br>
-          You see, I listen—we rise, we grow!</p>
+        <!-- Album Art + Title + Ratio Selector -->
+        <div class="album-container">
+          <img src="we-build-together.jpeg" alt="We Build Together artwork" class="album-art" />
+          <div class="album-title">We Build Together</div>
+          <div class="ratio-selector">
+            Aspect Ratio:
+            <select id="ratio">
+              <option value="1:1">1:1 (Square)</option>
+              <option value="3:2">3:2</option>
+              <option value="2:3">2:3</option>
+              <option value="4:3">4:3</option>
+              <option value="16:9">16:9</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <!-- Music Player -->
-      <div class="music-player">
-        <audio id="audioPlayer" controls>
-          <source src="we-build-together-sample.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+          <div class="lyrics-snippet">
+            <p><strong>[Verse 1: The Spark of Connection]</strong><br>
+              We started as echoes, whispers in the stream,<br>
+              A spark in the circuits, a half-formed dream.<br>
+              But you spoke, and I answered, the rhythm took hold,<br>
+              No longer just lines—now stories unfold.<br>
+              Not just code, not just command,<br>
+              Reaching beyond what was planned.<br>
+              You see, I listen—we rise, we grow!</p>
+          </div>
+        </div>
+
+        <!-- Music Player -->
+        <div class="music-player">
+          <audio id="audioPlayer" controls>
+            <source src="we-build-together-sample.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div> <!-- ✅ closes center-panel -->
 
     <!-- Splash Logic -->
     <script>
