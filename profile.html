@@ -18,50 +18,17 @@
       display: flex;
     }
 
-    .sidebar {
-      width: 100px;
-      background: linear-gradient(to bottom, #5b4b8a, #3d8699);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
-      min-height: 100vh;
-      position: fixed;
-    }
+    /* (Old .sidebar styles left in place but unused) */
+    .sidebar { width: 100px; background: linear-gradient(to bottom, #5b4b8a, #3d8699); display: flex; flex-direction: column; align-items: center; padding-top: 20px; min-height: 100vh; position: fixed; }
+    .sidebar img.profile-icon { width: 64px; height: 64px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.5); }
+    .sidebar h3 { color: #ccc; font-size: 12px; text-align: center; margin: 6px 0 20px; }
+    .sidebar h3:hover { color: #fff; text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(173, 216, 230, 0.6); cursor: default; }
+    .sidebar a { margin: 10px 0; }
+    .sidebar img.icon { width: 28px; height: 28px; }
 
-    .sidebar img.profile-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.5);
-    }
-
-    .sidebar h3 {
-      color: #ccc;
-      font-size: 12px;
-      text-align: center;
-      margin: 6px 0 20px;
-    }
-
-    .sidebar h3:hover {
-      color: #fff;
-      text-shadow: 0 0 6px rgba(255, 255, 255, 0.8),
-                   0 0 12px rgba(173, 216, 230, 0.6);
-      cursor: default;
-    }
-
-    .sidebar a {
-      margin: 10px 0;
-    }
-
-    .sidebar img.icon {
-      width: 28px;
-      height: 28px;
-    }
-
+    /* Main content shifted so it doesn't sit under the fixed toolbar */
     .main-content {
-      margin-left: 90px;
+      margin-left: 110px; /* matches toolbar width (~100px) + breathing room */
       padding: 40px;
       flex-grow: 1;
     }
@@ -73,26 +40,11 @@
       border-radius: 10px;
     }
 
-    .profile-section h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
+    .profile-section h1 { font-size: 28px; margin-bottom: 20px; }
+    .profile-section h2 { font-size: 22px; margin: 10px 0 0; }
+    .profile-section p { font-size: 16px; margin: 2px 0; }
 
-    .profile-section h2 {
-      font-size: 22px;
-      margin: 10px 0 0;
-    }
-
-    .profile-section p {
-      font-size: 16px;
-      margin: 2px 0;
-    }
-
-    .profile-section button {
-      margin-top: 10px;
-      padding: 8px 12px;
-      font-size: 14px;
-    }
+    .profile-section button { margin-top: 10px; padding: 8px 12px; font-size: 14px; }
 
     .starling-full {
       margin-top: 20px;
@@ -106,45 +58,45 @@
       object-fit: contain;
     }
 
-    .placeholder-text {
-      font-size: 13px;
-      margin-top: 10px;
-      color: #ccc;
-    }
+    .placeholder-text { font-size: 13px; margin-top: 10px; color: #ccc; }
+    .footer { margin-top: 40px; font-size: 13px; color: #ccc; }
 
-    .footer {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #ccc;
-    }
+    .preferences-subtext { font-size: 0.9rem; color: #ccc; margin-top: -4px; margin-bottom: 12px; }
+    .master-toggle { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 
-    .preferences-subtext {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-top: -4px;
-      margin-bottom: 12px;
-    }
-
-    .master-toggle {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
+    /* optional: makes the ⋯ button a bit larger to click */
+    .more-btn { background:none; border:none; font-size:24px; cursor:pointer; margin:10px 0; color: inherit; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="sidebar">
-      <img src="starling-head.png" alt="Profile Picture" class="profile-icon" />
-      <h3>SoundMuse</h3>
-      <a href="index.html"><img src="icons/home.png" alt="Home" class="icon" /></a>
-      <a href="uploads.html"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
+    <!-- ✅ Shared toolbar (matches homepage) -->
+    <div class="toolbar">
+      <a href="profile.html" class="sidebar-user" title="User Profile">
+        <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+        <span class="sidebar-username">SoundMuse</span>
+      </a>
+
+      <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
+      <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
       <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
-      <a href="saved-chats.html"><img src="icons/chat.png" alt="Chat" class="icon" /></a>
-      <a href="saved-lyrics.html"><img src="icons/lyrics.png" alt="Lyrics" class="icon" /></a>
-      <a href="download-ui.html"><img src="icons/download.png" alt="Download" class="icon" /></a>
-      <div style="margin: 12px 0;">...</div>
+      <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
+      <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
+      <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+
+      <!-- “More” menu -->
+      <button id="more-btn" class="more-btn" aria-expanded="false" title="More">⋯</button>
+      <nav id="more-menu" class="popup" role="menu" aria-hidden="true">
+        <ul>
+          <li><a href="more.html">More Options</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="saved-chats.html">Saved Chats</a></li>
+          <li><a href="saved-lyrics.html">Saved Lyrics</a></li>
+          <li><a href="edit-score.html">Music Score Editor</a></li>
+          <li><a href="download-ui.html">Download</a></li>
+        </ul>
+      </nav>
+
       <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
     </div>
 
@@ -214,6 +166,51 @@
       </div>
     </div>
   </div>
+
+  <!-- 🔦 Theme toggle + More menu scripts -->
+  <script>
+    (function () {
+      // theme
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+      const t = document.getElementById('theme-toggle');
+      if (t) t.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+
+      // more menu
+      const btn  = document.getElementById('more-btn');
+      const menu = document.getElementById('more-menu');
+      if (!btn || !menu) return;
+
+      function openMenu() {
+        menu.style.display = 'block';
+        btn.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+      }
+      function closeMenu() {
+        menu.style.display = 'none';
+        btn.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const shown = menu.style.display === 'block';
+        shown ? closeMenu() : openMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (menu.style.display === 'block' && !menu.contains(e.target) && e.target !== btn) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
-
