@@ -144,10 +144,13 @@ function openSoundMuse() {
         <div class="spectrogram-box">
           <img src="spectrograph-mock-up.png" alt="Spectrograph placeholder" style="max-width:100%; height:auto;" />
         </div>
-        <div class="album-container">
+       <!-- Album Art + Title + Ratio Selector -->
+<div class="album-container">
+  <img src="we-build-together.jpeg" alt="We Build Together artwork" class="album-art" />
+  <div class="album-title">We Build Together</div>
   <div class="ratio-selector">
-    <label for="imageRatio">Aspect Ratio: </label>
-    <select id="imageRatio">
+    Aspect Ratio:
+    <select id="ratio">
       <option value="1:1">1:1 (Square)</option>
       <option value="3:2">3:2</option>
       <option value="2:3">2:3</option>
@@ -155,9 +158,7 @@ function openSoundMuse() {
       <option value="16:9">16:9</option>
     </select>
   </div>
-  <img src="we-build-together.jpeg" alt="Album Art" class="album-art" />
 </div>
-      </div>
 
       <!-- RIGHT PANEL -->
       <div class="right-panel">
