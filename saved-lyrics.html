@@ -6,167 +6,271 @@
   <title>Saved Lyrics – SoundMuseAI</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .iconbar {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      width: 60px;
-      background-color: #111;
-      align-items: center;
-      padding-top: 10px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('Background-aurora.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #f3f3f8;
+      margin: 0;
     }
-    .icon {
-      width: 30px;
-      height: 30px;
-      margin: 15px 0;
-      filter: brightness(1.2);
+
+    /* Keep content clear of the fixed toolbar */
+    .page {
+      margin-left: 110px;               /* ~90px toolbar + breathing */
+      padding: 2rem 2rem 3rem;
     }
-    .content {
-      margin-left: 70px;
-      padding: 2rem;
+
+    /* Match homepage toolbar icon behavior (no global overrides) */
+    .toolbar a { margin: 10px 0; }
+    .toolbar img.icon {
+      width: 28px; height: 28px;
+      transition: transform 0.2s ease;
     }
+    .toolbar img.icon:hover { transform: scale(1.2); }
+
+    h1, h2, h3 {
+      margin: 0 0 0.75rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,.55);
+    }
+
+    .hint { color: #dcdcef; opacity: .9; }
+
+    /* Cards */
     .lyric-entry {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 1rem;
       margin-bottom: 1rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     }
-    .chat-header {
+
+    .row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    .chat-actions button {
-      margin-left: 8px;
-      background: transparent;
-      color: white;
+
+    .file-name { font-weight: 600; }
+
+    .btn {
+      background: #333;
+      color: #fff;
       border: none;
+      border-radius: 8px;
+      padding: .45rem .75rem;
+      font-size: .92rem;
       cursor: pointer;
-      font-size: 1.1rem;
+      margin-left: .5rem;
     }
-    .dropdown {
-      background: #222;
-      border-radius: 6px;
-      position: absolute;
-      margin-top: 4px;
-      z-index: 2;
-    }
-    .dropdown.hidden {
-      display: none;
-    }
-    .dropdown ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .dropdown li button {
-      background: none;
-      color: white;
+    .btn:hover { background: #555; }
+
+    .menu-btn {
+      background: transparent;
       border: none;
-      padding: 6px 12px;
-      width: 100%;
-      text-align: left;
+      color: #f3f3f8;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: .25rem .4rem;
+      border-radius: 6px;
     }
+    .menu-btn:hover { background: rgba(255,255,255,0.08); }
+
+    .dropdown {
+      position: absolute;
+      right: 0;
+      top: 2.2rem;
+      background: #1e2030;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: .35rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      min-width: 160px;
+      z-index: 10;
+    }
+    .hidden { display: none; }
+    .dropdown button {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #fff;
+      text-align: left;
+      padding: .5rem .6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: .92rem;
+    }
+    .dropdown button:hover { background: rgba(255,255,255,0.08); }
+
+    pre.lyric-snippet {
+      margin: .6rem 0 0;
+      padding: .75rem .9rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      color: #eef0ff;
+      overflow-x: auto;
+    }
+
     .sort-options {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 1.25rem;
+      align-items: center;
+      margin: .5rem 0 1.25rem;
+    }
+    .sort-options label { display: flex; gap: .5rem; align-items: center; }
+
+    @media (max-width: 1024px) {
+      .page { margin-left: 110px; padding-bottom: 140px; } /* keep clear of music bar */
     }
   </style>
 </head>
 <body>
-  <div class="iconbar">
+
+  <!-- ✅ Shared toolbar (matches homepage) -->
+  <div class="toolbar">
+    <a href="profile.html" class="sidebar-user" title="User Profile">
+      <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <span class="sidebar-username">SoundMuse</span>
+    </a>
+
     <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
     <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
     <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
     <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
     <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
-    <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
-    <div style="margin: 12px 0;">...</div>
-    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌓</button>
+    <a href="Download-UI.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+
+    <div style="margin:12px 0;">...</div>
+    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
   </div>
 
-  <div class="content">
-    <h2>📝 Your Saved Lyrics & Musical Ideas</h2>
-    <p>Pin up to 5 files you're actively working on. Sort the rest below.</p>
+  <!-- 📄 Content -->
+  <main class="page">
+    <h1>📝 Your Saved Lyrics & Musical Ideas</h1>
+    <p class="hint">Pin up to 5 files you're actively working on. Sort the rest below.</p>
 
-    <section>
-      <h3>📌 Pinned Lyrics (Max 5)</h3>
+    <!-- 📌 Pinned -->
+<h3>📌 Pinned Lyrics (Max 5)</h3>
 
-      <div class="lyric-entry">
-        <div class="chat-header">
-          <span>🎶 We-Build-Together.mp3</span>
-          <div class="chat-actions">
-            <button class="pin">📌</button>
-            <button class="menu">⋮</button>
-            <div class="dropdown hidden">
-              <ul>
-                <li><button>📍 Unpin</button></li>
-                <li><button>📁 Archive</button></li>
-                <li><button>🗑️ Delete</button></li>
-                <li><button>⬇️ Download</button></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <pre class="lyric-snippet">[Intro]
-[Act 1 – Anthem Rise] 🎶 Harmonic shimmer with marching tempo...
-</pre>
+<div class="lyric-entry" style="position:relative;">
+  <div class="row">
+    <span class="file-name">🎶 We-Build-Together.mp3</span>
+
+    <!-- right-side: date + menu -->
+    <div style="margin-left:auto; display:flex; align-items:center; gap:.5rem; position:relative;">
+      <span class="chat-date">Saved: 3 Sep 2025</span>
+      <button class="menu-btn menu">⋮</button>
+      <div class="dropdown hidden">
+        <button>📍 Unpin</button>
+        <button>📁 Archive</button>
+        <button>🗑️ Delete</button>
+        <button>⬇️ Download</button>
       </div>
-    </section>
-
-    <section>
-      <h3>📂 All Other Lyrics</h3>
-      <div class="sort-options">
-        <label><input type="radio" name="sort" checked /> Sort by File Type</label>
-        <label><input type="radio" name="sort" /> Sort A–Z</label>
-      </div>
-
-      <div class="lyric-entry">
-        <div class="chat-header">
-          <span>🎼 wentforgold.midi</span>
-          <div class="chat-actions">
-            <button>👁️ View</button>
-            <button>📁 Archive</button>
-            <button>🗑️ Delete</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="lyric-entry">
-        <div class="chat-header">
-          <span>🎵 demo-neverknowuntilyoutry.wav</span>
-          <div class="chat-actions">
-            <button>👁️ View</button>
-            <button>📁 Archive</button>
-            <button>🗑️ Delete</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="lyric-entry">
-        <div class="chat-header">
-          <span>🎶 mysterymuse.MP3</span>
-          <div class="chat-actions">
-            <button>👁️ View</button>
-            <button>📁 Archive</button>
-            <button>🗑️ Delete</button>
-          </div>
-        </div>
-      </div>
-
-    </section>
+    </div>
   </div>
 
+  <pre class="lyric-snippet">[Intro]
+[Act 1 – Anthem Rise] Harmonic shimmer with marching tempo...</pre>
+</div>
+<h3>📌 Pinned Lyrics (Max 5)</h3>
+
+    <div class="lyric-entry" style="position:relative;">
+      <div class="row">
+        <span class="file-name">🎶 We-Build-Together.mp3</span>
+        <div style="margin-left:auto; position:relative;">
+          <button class="menu-btn menu">⋮</button>
+          <div class="dropdown hidden">
+            <button>📍 Unpin</button>
+            <button>📁 Archive</button>
+            <button>🗑️ Delete</button>
+            <button>⬇️ Download</button>
+          </div>
+        </div>
+      </div>
+      <pre class="lyric-snippet">[Intro]
+[Act 1 – Anthem Rise] Harmonic shimmer with marching tempo...</pre>
+    </div>
+
+    <!-- 📂 Others -->
+   <h3>📂 All Other Lyrics</h3>
+<div class="sort-options">
+  <label><input type="radio" name="sort" checked /> Sort by File Type</label>
+  <label><input type="radio" name="sort" /> Sort A–Z</label>
+</div>
+
+<!-- 1) wentforgold.midi — 7 Sep 2025 -->
+<div class="lyric-entry">
+  <div class="row">
+    <span class="file-name">🎼 wentforgold.midi</span>
+
+    <div style="margin-left:auto; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;">
+      <span class="chat-date">Saved: 7 Sep 2025</span>
+      <div>
+        <button class="btn">👀 View</button>
+        <button class="btn">📁 Archive</button>
+        <button class="btn">🗑️ Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2) mysterymuse.MP3 — 22 Aug 2025 -->
+<div class="lyric-entry">
+  <div class="row">
+    <span class="file-name">🎶 mysterymuse.MP3</span>
+
+    <div style="margin-left:auto; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;">
+      <span class="chat-date">Saved: 22 Aug 2025</span>
+      <div>
+        <button class="btn">👀 View</button>
+        <button class="btn">📁 Archive</button>
+        <button class="btn">🗑️ Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3) demo-neverknowuntilyoutry.wav — 15 Aug 2025 -->
+<div class="lyric-entry">
+  <div class="row">
+    <span class="file-name">🎵 demo-neverknowuntilyoutry.wav</span>
+
+    <div style="margin-left:auto; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;">
+      <span class="chat-date">Saved: 15 Aug 2025</span>
+      <div>
+        <button class="btn">👀 View</button>
+        <button class="btn">📁 Archive</button>
+        <button class="btn">🗑️ Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+  <!-- 🔦 Theme toggle (same as homepage) -->
   <script>
-    const menus = document.querySelectorAll('.menu');
-    menus.forEach(menu => {
-      menu.addEventListener('click', () => {
-        const dropdown = menu.nextElementSibling;
-        dropdown.classList.toggle('hidden');
+    (function() {
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+      const t = document.getElementById('theme-toggle');
+      if (t) t.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+    })();
+
+    // simple dropdown toggle for pinned menu
+    document.querySelectorAll('.menu').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const dd = e.currentTarget.nextElementSibling;
+        dd.classList.toggle('hidden');
       });
     });
   </script>
