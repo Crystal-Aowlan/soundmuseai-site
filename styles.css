@@ -630,3 +630,7 @@ body.dark-theme .audio-upload input[type="file"] {
   max-height: 400px;
   overflow-y: auto;
 }
+/* === Quick Stability Patch: Hide ratio selector === */
+.ratio-selector {
+  display: none !important;
+}
