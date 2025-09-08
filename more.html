@@ -1,70 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoundMuseAI – More</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      padding: 20px;
+      background-image: url('Background-aurora.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      color: #f3f3f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /* keep content clear of the fixed toolbar */
+    main.page {
+      margin-left: 110px;           /* ~90px toolbar + breathing room */
+      padding: 2rem 2rem 3rem;
+    }
+    .card {
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     }
     h1, h2 {
-      color: #5a4d7c;
+      margin: 0 0 .75rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,.55);
     }
-    .section {
-      margin-bottom: 40px;
-    }
+    ul { margin: .25rem 0 .25rem 1.25rem; }
     .button {
       display: inline-block;
-      background-color: #5a4d7c;
-      color: white;
-      padding: 10px 20px;
+      background: #5a4d7c;
+      color: #fff;
       text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
+      padding: .55rem .9rem;
+      border-radius: 8px;
+      margin-top: .5rem;
     }
-    .button:hover {
-      background-color: #7e6eb0;
+    .button:hover { filter: brightness(1.1); }
+
+    /* match homepage toolbar icon behavior */
+    .toolbar a { margin: 10px 0; }
+    .toolbar img.icon {
+      width: 28px; height: 28px;
+      transition: transform 0.2s ease;
     }
+    .toolbar img.icon:hover { transform: scale(1.2); }
+
+    /* optional: slightly larger tap target for the … button */
+    .more-btn { background:none; border:none; font-size:24px; cursor:pointer; margin:10px 0; color: inherit; }
   </style>
 </head>
 <body>
-  <h1>More Options</h1>
 
-  <section class="section" id="account-management">
-    <h2>My Account</h2>
-    <p>Manage your SoundMuseAI account settings, view your plan status, and upgrade if needed.</p>
-    <ul>
-      <li><strong>Plan:</strong> Free Tier</li>
-      <li><strong>Usage:</strong> 1 full-length or 2 short uploads per day</li>
-      <li><strong>Upgrade Options:</strong> Lite / Moderate / Heavy usage tiers (Coming Soon)</li>
-    </ul>
-    <a href="#" class="button">Upgrade Plan</a>
-  </section>
+  <!-- ✅ Shared toolbar (matches homepage) -->
+  <div class="toolbar">
+    <a href="profile.html" class="sidebar-user" title="User Profile">
+      <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <span class="sidebar-username">SoundMuse</span>
+    </a>
 
-  <section class="section" id="help">
-    <h2>Help</h2>
-    <p>Need guidance? Get support on using SoundMuseAI, uploading files, interpreting spectrographs, or writing with AI assistance.</p>
-    <a href="#" class="button">Get Help</a>
-  </section>
+    <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
+    <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
+    <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
+    <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
+    <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
+    <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
 
-  <section class="section" id="about-section">
-    <h2>About SoundMuseAI</h2>
-    <p>
-      SoundMuseAI was created by <strong>Crystal Aowlan</strong>, a UK-based independent artist, music explorer, and creative polymath.  
-      It was designed as a creative companion — a tool that adapts to your needs and skill level, rather than dictating them.  
-      Whether you're a seasoned musician or just beginning your journey, SoundMuseAI offers a safe, encouraging space for all users,  
-      including those who are neurodivergent, disabled, or creatively blocked.  
-    </p>
-    <p>
-      This project began as a vision for something better:  
-      a musical co-creator that listens, responds, evolves, and supports — without judgement, jargon, or noise.  
-      SoundMuseAI aims to empower, inspire, and help users find their voice, one sound at a time.
-    </p>
-  </section>
+    <!-- “…” More -->
+    <button id="more-btn" class="more-btn" aria-expanded="false" title="More">⋯</button>
+    <nav id="more-menu" class="popup" role="menu" aria-hidden="true">
+      <ul>
+        <li><a href="more.html">More Options</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="saved-chats.html">Saved Chats</a></li>
+        <li><a href="saved-lyrics.html">Saved Lyrics</a></li>
+        <li><a href="edit-score.html">Music Score Editor</a></li>
+        <li><a href="download-ui.html">Download</a></li>
+      </ul>
+    </nav>
 
+    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
+  </div>
+
+  <!-- 📄 Content -->
+  <main class="page">
+    <h1>More Options</h1>
+
+    <section class="card" id="account-management">
+      <h2>My Account</h2>
+      <p>Manage your SoundMuseAI account settings, view your plan status, and upgrade if needed.</p>
+      <ul>
+        <li><strong>Plan:</strong> Free Tier</li>
+        <li><strong>Usage:</strong> 1 full-length or 2 short uploads per day</li>
+        <li><strong>Upgrade Options:</strong> Lite / Moderate / Heavy usage tiers (Coming Soon)</li>
+      </ul>
+      <a href="#" class="button">Upgrade Plan</a>
+    </section>
+
+    <section class="card" id="help">
+      <h2>Help</h2>
+      <p>Need guidance? Get support on using SoundMuseAI, uploading files, interpreting spectrograms, or writing with AI assistance.</p>
+      <a href="#" class="button">Get Help</a>
+    </section>
+
+   <section class="card" id="about-section">
+  <h2>About SoundMuseAI</h2>
+  <p>
+    Built by <strong>Crystal Aowlan</strong>—UK-based artist, music explorer, and
+    <strong>self-directed, AI-assisted first-time coder</strong>—to provide a
+    human-friendly music mentor for all skill levels, learning styles, and
+    music-making needs.
+  </p>
+  <p>
+    Whether you're a seasoned musician or just beginning your journey, SoundMuseAI offers a
+    safe, encouraging space for all users—including those who are neurodivergent, disabled,
+    or creatively blocked.
+  </p>
+  <p>
+    This project began as a vision for something better: a musical co-creator that listens,
+    responds, evolves, and supports—without judgement, jargon, or noise.
+  </p>
+  <p>
+    SoundMuseAI aims to empower, inspire, and help users find their voice, one sound at a time.
+  </p>
+ </section>
+  </main>
+
+  <!-- 🔦 Theme toggle + More menu JS -->
+  <script>
+    (function() {
+      // theme
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+      const t = document.getElementById('theme-toggle');
+      if (t) t.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+
+      // more menu
+      const btn  = document.getElementById('more-btn');
+      const menu = document.getElementById('more-menu');
+      if (!btn || !menu) return;
+
+      function openMenu() {
+        menu.style.display = 'block';
+        btn.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+      }
+      function closeMenu() {
+        menu.style.display = 'none';
+        btn.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const shown = menu.style.display === 'block';
+        shown ? closeMenu() : openMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (menu.style.display === 'block' && !menu.contains(e.target) && e.target !== btn) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
