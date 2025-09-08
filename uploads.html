@@ -1,50 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Uploads – SoundMuseAI</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{
+      background: url('Background-aurora.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #f4f4f8;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /* keep content clear of fixed toolbar */
+    main.page { margin-left: 110px; padding: 2rem 2rem 4rem; }
+
+    h1 { margin: 0 0 1rem; text-shadow: 0 1px 2px rgba(0,0,0,.55); }
+    p.note { color:#d9def7; opacity:.9; margin-top:.75rem; }
+
+    /* file list cards */
+    .file-list { list-style:none; padding:0; margin: 1rem 0 0; max-width: 920px; }
+    .file-row{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      background: rgba(0,0,0,.46);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: .85rem 1rem;
+      margin-bottom: .8rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .file-left{ display:flex; align-items:center; gap:.7rem; min-width:0; }
+    .file-emoji{ font-size:1.1rem; }
+    .file-name{
+      font-weight:600; color:#eef3ff; letter-spacing:.15px;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+
+    .actions{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+    .btn{
+      background:#2a2d3f; color:#fff; border:1px solid rgba(255,255,255,.15);
+      padding:.45rem .75rem; border-radius:8px; cursor:pointer; font-size:.95rem;
+    }
+    .btn:hover{ filter:brightness(1.1); }
+    .btn.warn{ background:#3a2a2a; }
+    .btn.soft{ background:rgba(255,255,255,.07); }
+
+    /* big tap target for More button in toolbar */
+    .more-btn { background:none; border:none; font-size:24px; cursor:pointer; margin:10px 0; color: inherit; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🎧 SoundMuseAI</h1>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="profile.html">👤 Profile</a>
-      <a href="uploads.html" class="active">📂 My Uploads</a>
-    </nav>
-  </header>
 
-  <!-- Sidebar container -->
-  <aside class="sidebar">
-    <div class="sidebar-profile">
-      <img src="images/starling-icon.png" alt="SoundMuseAI Icon" class="starling-avatar">
-      <span class="sidebar-label">SoundMuse</span>
-    </div>
-    <ul class="sidebar-nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="profile.html">Profile</a></li>
-      <li><a href="uploads.html" class="active">My Uploads</a></li>
-      <li><a href="#">Search</a></li>
-      <li><a href="#">Chat</a></li>
-      <li><a href="#">Lyrics</a></li>
-      <li><a href="#">Download</a></li>
-      <li><a href="#">...</a></li>
-    </ul>
-  </aside>
+  <!-- ✅ Shared toolbar (matches homepage) -->
+  <div class="toolbar">
+    <a href="profile.html" class="sidebar-user" title="User Profile">
+      <img src="starling-head.png" alt="SoundMuse Profile" class="profile-pic" />
+      <span class="sidebar-username">SoundMuse</span>
+    </a>
 
-  <main class="uploads-container">
-    <section class="uploads-list">
-      <h2>📁 Uploaded Files</h2>
+    <a href="index.html" title="Home"><img src="icons/home.png" alt="Home" class="icon" /></a>
+    <a href="uploads.html" title="My Uploads"><img src="icons/upload.png" alt="Uploads" class="icon" /></a>
+    <a href="edit-score.html" title="Music Score Editor"><img src="icons/score.png" alt="Music Score Editor" class="icon" /></a>
+    <a href="saved-chats.html" title="Saved Chats"><img src="icons/chat.png" alt="Saved Chats" class="icon" /></a>
+    <a href="saved-lyrics.html" title="Saved Lyrics"><img src="icons/lyrics.png" alt="Saved Lyrics" class="icon" /></a>
+    <a href="download-ui.html" title="Download"><img src="icons/download.png" alt="Download" class="icon" /></a>
+
+    <!-- “More” -->
+    <button id="more-btn" class="more-btn" aria-expanded="false" title="More">⋯</button>
+    <nav id="more-menu" class="popup" role="menu" aria-hidden="true">
       <ul>
-        <li>🎵 demo-neverknowuntilyoutry.wav</li>
-        <li>🎶 mysterymuse.MP3</li>
-        <li>🎶 We-Build-Together.mp3</li>
-        <li>🎼 wentforgold.midi</li>
-        </ul>
-      <p class="note">* Spectrograph viewer to be included in future mock-up phase.</p>
-    </section>
+        <li><a href="more.html">More Options</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="saved-chats.html">Saved Chats</a></li>
+        <li><a href="saved-lyrics.html">Saved Lyrics</a></li>
+        <li><a href="edit-score.html">Music Score Editor</a></li>
+        <li><a href="download-ui.html">Download</a></li>
+      </ul>
+    </nav>
+
+    <button id="theme-toggle" title="Toggle Light/Dark Mode">🌗</button>
+  </div>
+
+  <!-- 📄 Page -->
+  <main class="page" role="main">
+    <h1>📂 Uploaded Files</h1>
+
+    <ul class="file-list">
+      <li class="file-row">
+        <div class="file-left">
+          <span class="file-emoji">🎵</span>
+          <span class="file-name">demo-neverknowuntilyoutry.wav</span>
+        </div>
+        <div class="actions">
+          <button class="btn soft">👁️ View</button>
+          <button class="btn">📁 Archive</button>
+          <button class="btn warn">🗑️ Delete</button>
+        </div>
+      </li>
+
+      <li class="file-row">
+        <div class="file-left">
+          <span class="file-emoji">🎶</span>
+          <span class="file-name">mysterymuse.MP3</span>
+        </div>
+        <div class="actions">
+          <button class="btn soft">👁️ View</button>
+          <button class="btn">📁 Archive</button>
+          <button class="btn warn">🗑️ Delete</button>
+        </div>
+      </li>
+
+      <li class="file-row">
+        <div class="file-left">
+          <span class="file-emoji">🎶</span>
+          <span class="file-name">We-Build-Together.mp3</span>
+        </div>
+        <div class="actions">
+          <button class="btn soft">👁️ View</button>
+          <button class="btn">📁 Archive</button>
+          <button class="btn warn">🗑️ Delete</button>
+        </div>
+      </li>
+
+      <li class="file-row">
+        <div class="file-left">
+          <span class="file-emoji">🎼</span>
+          <span class="file-name">wentforgold.midi</span>
+        </div>
+        <div class="actions">
+          <button class="btn soft">👁️ View</button>
+          <button class="btn">📁 Archive</button>
+          <button class="btn warn">🗑️ Delete</button>
+        </div>
+      </li>
+    </ul>
+
+    <p class="note">* Spectrograph viewer to be included in future mock-up phase.</p>
   </main>
+
+  <!-- 🔦 Theme + More menu JS (same pattern as other pages) -->
+  <script>
+    (function () {
+      // Theme toggle
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+      const t = document.getElementById('theme-toggle');
+      if (t) t.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+
+      // More menu
+      const btn  = document.getElementById('more-btn');
+      const menu = document.getElementById('more-menu');
+      if (btn && menu) {
+        const openMenu = () => { menu.style.display='block'; btn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); };
+        const closeMenu = () => { menu.style.display='none';  btn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); };
+        btn.addEventListener('click', (e) => { e.stopPropagation(); (menu.style.display==='block') ? closeMenu() : openMenu(); });
+        document.addEventListener('click', (e) => { if (menu.style.display==='block' && !menu.contains(e.target) && e.target!==btn) closeMenu(); });
+        document.addEventListener('keydown', (e) => { if (e.key==='Escape') closeMenu(); });
+      }
+    })();
+  </script>
 </body>
 </html>
