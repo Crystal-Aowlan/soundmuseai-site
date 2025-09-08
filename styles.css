@@ -611,3 +611,43 @@ body.dark-theme .audio-upload input[type="file"] {
   max-height: 400px;
   overflow-y: auto;
 }
+/* Album Container Styling */
+.album-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding-bottom: 40px; /* keeps it above the music player */
+}
+
+/* Album Image */
+.album-art {
+  max-width: 80%;
+  max-height: 250px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Album Title */
+.album-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--text-color, #ffffff); /* default white in dark mode */
+  text-align: center;
+}
+
+/* Ratio Selector Styling */
+.ratio-selector {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ratio-selector select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
