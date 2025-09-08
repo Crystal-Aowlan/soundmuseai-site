@@ -13,99 +13,78 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    /* keep page content clear of fixed toolbar */
-    main.page {
-      margin-left: 110px; /* ~100px toolbar + breathing room */
-      padding: 2rem 2rem 4rem;
-    }
-
+    /* keep content clear of fixed toolbar */
+    main.page { margin-left: 110px; padding: 2rem 2rem 4rem; }
     h1 { margin: 0 0 1rem; text-shadow: 0 1px 2px rgba(0,0,0,.55); }
     p  { max-width: 56rem; }
 
     .btn {
       display: inline-block;
-      padding: .5rem .9rem;
-      border-radius: 8px;
+      padding: .6rem 1rem;
+      border-radius: 10px;
       border: 1px solid rgba(255,255,255,.2);
       background: rgba(0,0,0,.35);
       color: #fff;
       cursor: pointer;
+      backdrop-filter: blur(3px);
     }
     .btn:hover { filter: brightness(1.1); }
+    .btn.primary {
+      background: linear-gradient(135deg, #7c79ff, #9ea6ff);
+      color: #0d0d1a;
+      border: none;
+      font-weight: 600;
+    }
+    .btn[disabled] { opacity: .55; cursor: not-allowed; }
 
     /* ---------- Modal (popup) ---------- */
     .dl-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(0,0,0,0.55);
-      display: none;               /* toggled by JS */
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 3.5rem;
-      z-index: 2000;
+      display: none; align-items: flex-start; justify-content: center;
+      padding-top: 3.5rem; z-index: 2000;
     }
     .dl-overlay.show { display: flex; }
-
     .dl-modal {
       width: min(760px, 96vw);
-      background: rgba(0,0,0,.6);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
+      background: rgba(10,14,26,.75);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
       box-shadow: 0 10px 26px rgba(0,0,0,.35);
-      padding: 1.25rem 1.25rem 1rem;
+      padding: 1.25rem 1.25rem 1.25rem;
       position: relative;
+      color: #eef3ff;
     }
-
     .dl-close {
-      position: absolute;
-      top: .5rem; right: .6rem;
-      background: transparent;
-      border: none;
-      font-size: 22px;
-      color: #fff;
-      cursor: pointer;
-      line-height: 1;
+      position: absolute; top: .6rem; right: .7rem;
+      background: transparent; border: none; font-size: 22px; color: #fff;
+      cursor: pointer; line-height: 1;
+    }
+    .dl-header { margin-bottom: .75rem; }
+    .dl-sub { font-size: .95rem; color: #d6dcff; opacity: .9; margin-top: .2rem; }
+
+    fieldset.opts { border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: .75rem .9rem; }
+    fieldset.opts legend { padding: 0 .4rem; font-weight: 600; opacity: .95; }
+    .opt-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .6rem .8rem; margin-top: .25rem;
+    }
+    .opt {
+      display: flex; align-items: center; gap: .55rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px; padding: .55rem .7rem;
+    }
+    .opt input { transform: scale(1.2); }
+    .opt label { cursor: pointer; }
+
+    .controls {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: .75rem; margin-top: 1rem;
+      flex-wrap: wrap;
     }
 
-    .mockup-wrap {
-      margin-top: .5rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: .75rem;
-    }
-    .mockup-wrap img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    /* Quick actions below (not in modal) */
-    .quick-actions {
-      margin-top: 1.25rem;
-      max-width: 760px;
-    }
-    .quick-actions .qa-note {
-      font-size: .9rem; color: #cfcfe6; opacity: .9; margin: .25rem 0 .75rem;
-    }
-    .quick-actions .qa-row {
-      display: grid;
-      gap: .6rem;
-    }
-    .qa-row .qa-btn {
-      background: rgba(214, 255, 245, 0.12);
-      border: 1px solid rgba(255,255,255,.15);
-      padding: .65rem .9rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      color: #eef8ff;
-    }
-    .qa-row .qa-btn:hover { filter: brightness(1.08); }
-
-    /* larger tap target for the "More" button */
+    /* bigger tap target for More button in toolbar */
     .more-btn { background:none; border:none; font-size:24px; cursor:pointer; margin:10px 0; color: inherit; }
   </style>
 </head>
@@ -144,30 +123,46 @@
   <!-- 📄 Page content -->
   <main class="page">
     <h1>Download Options</h1>
-    <p>Click the button below to preview the download interface:</p>
+    <p>Click the button below to choose what you’d like to export.</p>
     <button id="openDl" class="btn">Open Download UI</button>
-
-    <!-- Quick actions OUTSIDE the modal (so the popup only shows the top card) -->
-    <section class="quick-actions" aria-label="Quick actions (mock)">
-      <p class="qa-note">This area is a placeholder for future one-click exports.</p>
-      <div class="qa-row">
-        <button class="qa-btn">Download Chat</button>
-        <button class="qa-btn">Download Lyrics</button>
-        <button class="qa-btn">Download Spectrogram</button>
-      </div>
-    </section>
   </main>
 
-  <!-- 🪟 Modal: only shows the top mockup card -->
+  <!-- 🪟 Modal: interactive checkboxes + single primary Download -->
   <div id="dlOverlay" class="dl-overlay" aria-hidden="true">
     <div class="dl-modal" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
       <button id="closeDl" class="dl-close" aria-label="Close">✕</button>
-      <h2 id="dlTitle">Download Options</h2>
-      <p>Select what you'd like to download:</p>
 
-      <div class="mockup-wrap">
-        <!-- Use the exact case of your asset -->
-        <img src="Download-mockup.png" alt="Download UI mockup (checkboxes + big download button only)">
+      <div class="dl-header">
+        <h2 id="dlTitle">Download Options</h2>
+        <div class="dl-sub">Select one or more items to download.</div>
+      </div>
+
+      <fieldset class="opts">
+        <legend>Available Exports</legend>
+        <div class="opt-grid">
+          <div class="opt">
+            <input type="checkbox" id="opt-chat">
+            <label for="opt-chat">Chat (HTML / TXT)</label>
+          </div>
+          <div class="opt">
+            <input type="checkbox" id="opt-lyrics">
+            <label for="opt-lyrics">Lyrics (TXT / Markdown)</label>
+          </div>
+          <div class="opt">
+            <input type="checkbox" id="opt-spectro">
+            <label for="opt-spectro">Spectrogram (PNG)</label>
+          </div>
+          <div class="opt">
+            <input type="checkbox" id="opt-score">
+            <label for="opt-score">Music Score (PDF)</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="controls">
+        <button id="toggleAll" class="btn">Select All</button>
+        <div style="flex:1"></div>
+        <button id="doDownload" class="btn primary" disabled>Download</button>
       </div>
     </div>
   </div>
@@ -195,24 +190,52 @@
         document.addEventListener('keydown', (e) => { if (e.key==='Escape') closeMenu(); });
       }
 
-      // Modal
+      // Modal logic
       const overlay = document.getElementById('dlOverlay');
-      const open    = document.getElementById('openDl');
-      const close   = document.getElementById('closeDl');
+      const openBtn = document.getElementById('openDl');
+      const closeBtn= document.getElementById('closeDl');
+      const allOpts = ['opt-chat','opt-lyrics','opt-spectro','opt-score'].map(id => document.getElementById(id));
+      const dlBtn   = document.getElementById('doDownload');
+      const toggleAll = document.getElementById('toggleAll');
 
-      function showModal() {
+      function selections() { return allOpts.filter(o => o.checked).map(o => o.id); }
+      function updateDL() { dlBtn.disabled = selections().length === 0; }
+
+      allOpts.forEach(o => o.addEventListener('change', updateDL));
+
+      toggleAll.addEventListener('click', () => {
+        const anyUnchecked = allOpts.some(o => !o.checked);
+        allOpts.forEach(o => o.checked = anyUnchecked);
+        updateDL();
+        toggleAll.textContent = anyUnchecked ? 'Clear All' : 'Select All';
+      });
+
+      openBtn.addEventListener('click', () => {
         overlay.classList.add('show');
         overlay.setAttribute('aria-hidden','false');
-      }
-      function hideModal() {
+      });
+      closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show');
         overlay.setAttribute('aria-hidden','true');
-      }
+      });
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); }});
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); }});
 
-      open.addEventListener('click', showModal);
-      close.addEventListener('click', hideModal);
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) hideModal(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideModal(); });
+      // Mock download handler
+      dlBtn.addEventListener('click', () => {
+        const picked = selections();
+        if (!picked.length) return;
+        const nice = {
+          'opt-chat': 'Chat',
+          'opt-lyrics': 'Lyrics',
+          'opt-spectro': 'Spectrogram',
+          'opt-score': 'Music Score (PDF)'
+        };
+        alert('Preparing download for: ' + picked.map(x => nice[x]).join(', ') + '\\n(This is a demo UI – hook your export here.)');
+      });
+
+      // initial state
+      updateDL();
     })();
   </script>
 </body>
