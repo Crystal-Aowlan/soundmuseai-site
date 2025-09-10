@@ -66,7 +66,15 @@ In essence, SoundMuseAI is imagined as an all-in-one music co-creator, mentor, a
 - This is a **mock-up UI** – full functionality is part of the future roadmap
 
 ---
+## 🧠 Model Notes & Timeline  
 
+- Prototype GPT companion built with **OpenAI GPT-4o (custom-trained instance)** during the hackathon timeframe.  
+- Initial idea formed **mid–late August 2025**.  
+- **UI sketch drawn on 29 August 2025**.  
+- **Prototype website coded during the final two weeks** leading up to submission.  
+- For hackathon compliance, model listed as **gpt-oss-20b**.  
+
+---
 ## 📁 License
 
 This project is open for exploration and learning during the **OpenAI Hackathon**.  
